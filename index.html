@@ -2,29 +2,25 @@
 <html lang="tr" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>RPG</title>
-
-  <!-- iOS & Android Ana Ekran Başlığı ve Web App Ayarları -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="RPG">
   <meta name="application-name" content="RPG">
   <meta name="theme-color" content="#0B0F17">
 
-  <!-- Özel Tasarım Premium RPG Uygulama Logosu (SVG Data URI - İndirme veya Dosya Yükleme Gerekmez) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230B0F17'/%3E%3Cstop offset='50%25' stop-color='%23131B2A'/%3E%3Cstop offset='100%25' stop-color='%231e1b4b'/%3E%3C/linearGradient%3E%3ClinearGradient id='bolt' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f59e0b'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3Cfilter id='glow' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='16' result='blur'/%3E%3CfeComposite in='SourceGraphic' in2='blur' operator='over'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bg)' stroke='%2338bdf8' stroke-width='8' stroke-opacity='0.25'/%3E%3Cpath d='M285 45L145 285h105L215 467l172-247H272l38-175z' fill='url(%23bolt)' filter='url(%23glow)'/%3E%3C/svg%3E">
-  
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230B0F17'/%3E%3Cstop offset='50%25' stop-color='%23131B2A'/%3E%3Cstop offset='100%25' stop-color='%231e1b4b'/%3E%3C/linearGradient%3E%3ClinearGradient id='bolt' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23f59e0b'/%3E%3Cstop offset='50%25' stop-color='%2310b981'/%3E%3Cstop offset='100%25' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3Cfilter id='glow' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='16' result='blur'/%3E%3CfeComposite in='SourceGraphic' in2='blur' operator='over'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bg)' stroke='%2338bdf8' stroke-width='8' stroke-opacity='0.25'/%3E%3Cpath d='M285 45L145 285h105L215 467l172-247H272l38-175z' fill='url(%23bolt)' filter='url(%23glow)'/%3E%3C/svg%3E">
+  <!-- Custom SVG Favicon -->
+  <link id="faviconLink" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='115' fill='%230B0F17'/%3E%3Crect x='20' y='20' width='472' height='472' rx='95' fill='none' stroke='%2310B981' stroke-width='16' stroke-opacity='0.4'/%3E%3Cpath d='M296 72L136 280h112l-32 160 160-208H264L296 72z' fill='%23F59E0B'/%3E%3C/svg%3E">
+  <link id="appleTouchIcon" rel="apple-touch-icon" href="">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter -->
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -32,404 +28,508 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              lime: '#10b981',
-              neon: '#22c55e',
-              cyan: '#06b6d4',
-              amber: '#f59e0b',
-              purple: '#8b5cf6',
-              bgDark: '#0B0F17',
-              cardDark: '#131B2A',
-              cardBorder: '#1F293D'
-            }
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
           }
         }
       }
-    }
+    };
   </script>
 
   <style>
-    /* iOS PWA & Safe Area tweaks */
     body {
-      touch-action: manipulation;
+      background-color: #0B0F17;
+      color: #F8FAFC;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
-      background-color: #0B0F17;
     }
-    .safe-top {
-      padding-top: env(safe-area-inset-top, 0px);
+    .task-card {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .safe-bottom {
-      padding-bottom: env(safe-area-inset-bottom, 16px);
+    .task-card:active {
+      transform: scale(0.97);
     }
-    /* Smooth progress bar transitions */
-    .progress-bar-fill {
-      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    @keyframes pulse-ring {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      70% { transform: scale(1.35); opacity: 0; }
+      100% { transform: scale(1.35); opacity: 0; }
     }
-    /* Hide scrollbars for clean aesthetic */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    .mic-recording::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 9999px;
+      background-color: rgba(239, 68, 68, 0.6);
+      animation: pulse-ring 1.4s infinite;
+      z-index: -1;
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0F17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+      border-radius: 9999px;
     }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-brand-neon selection:text-black">
+<body class="min-h-screen pb-24 antialiased">
 
-  <!-- TOP STICKY BAR: XP & Status -->
-  <header class="sticky top-0 z-40 bg-[#0B0F17]/95 backdrop-blur-md border-b border-slate-800/80 safe-top">
-    <div class="max-w-md mx-auto px-4 py-3">
-      <!-- Top Row: Date, Streak & Audio toggle -->
-      <div class="flex items-center justify-between mb-2.5">
-        <div>
-          <span id="currentDateDisplay" class="text-xs font-semibold tracking-wider uppercase text-slate-400">Bugün</span>
-          <div class="flex items-center gap-1.5 mt-0.5">
-            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="tierBadge" class="text-xs font-bold text-emerald-400">Başlangıç</span>
+  <!-- TOP STICKY HUD / HEADER -->
+  <header class="sticky top-0 z-30 bg-[#0B0F17]/90 backdrop-blur-xl border-b border-slate-800/80 px-4 py-3">
+    <div class="max-w-md mx-auto space-y-2.5">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-amber-500 p-[1px] shadow-lg shadow-emerald-500/10">
+            <div class="w-full h-full bg-[#0B0F17] rounded-[11px] flex items-center justify-center text-lg">
+              ⚡
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-sm font-extrabold tracking-tight text-white uppercase">RPG Telemetri</h1>
+              <span id="tierBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">Başlangıç</span>
+            </div>
+            <p id="currentDateText" class="text-[11px] text-slate-400 font-medium">Bugün</p>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <!-- Streak Indicator -->
-          <div class="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">
-            <span class="text-sm">🔥</span>
-            <span id="streakCount" class="text-xs font-bold font-mono text-amber-400">1 Gün Seri</span>
+          <!-- Streak Pill -->
+          <div class="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 rounded-xl">
+            <span class="text-xs">🔥</span>
+            <span id="streakCount" class="font-mono text-xs font-bold text-amber-400">1</span>
+            <span class="text-[10px] text-amber-300/80 font-semibold">Gün</span>
           </div>
+
           <!-- Sound Toggle -->
-          <button id="soundToggleBtn" onclick="toggleSound()" class="p-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white transition active:scale-95" title="Ses Aç/Kapat">
-            <svg id="soundIconOn" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
-            <svg id="soundIconOff" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+          <button onclick="toggleSound()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition" title="Ses Efektleri">
+            <span id="soundIconOn" class="text-xs">🔊</span>
+            <span id="soundIconOff" class="text-xs hidden">🔇</span>
           </button>
         </div>
       </div>
 
-      <!-- XP Stats & Big Progress Bar -->
-      <div class="bg-[#131B2A] rounded-2xl p-3.5 border border-slate-800 shadow-lg">
-        <div class="flex justify-between items-baseline mb-2">
+      <!-- XP Progress Bar -->
+      <div class="space-y-1">
+        <div class="flex items-center justify-between text-xs">
           <div class="flex items-baseline gap-1">
-            <span id="currentXp" class="text-3xl font-extrabold font-mono tracking-tight text-white">0</span>
-            <span class="text-xs font-semibold text-slate-400">/ <span id="maxXp">220</span> XP</span>
+            <span id="currentXp" class="font-mono text-lg font-extrabold text-emerald-400">0</span>
+            <span class="text-slate-500 font-mono text-xs">/ <span id="maxXp">220</span> XP</span>
           </div>
-          <span id="xpPercentage" class="text-xs font-bold font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md">0%</span>
+          <div class="flex items-center gap-2 text-[10px] text-slate-400">
+            <span>Hedef: 130⚡ / 170🔥 / 200🏆</span>
+            <span id="xpPercentage" class="font-mono font-bold text-white">0%</span>
+          </div>
         </div>
-
-        <!-- Progress Track -->
-        <div class="relative w-full h-3 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
-          <div id="progressBar" class="h-full bg-gradient-to-r from-cyan-500 via-emerald-500 to-brand-neon rounded-full progress-bar-fill w-0 shadow-[0_0_12px_rgba(34,197,94,0.4)]"></div>
-        </div>
-
-        <!-- Milestones Indicators -->
-        <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1.5 px-0.5">
-          <span>0</span>
-          <span>130 (Rölanti)</span>
-          <span>170 (Sağlam)</span>
-          <span class="text-emerald-400 font-bold">200+ (Elit)</span>
+        <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800 p-[1px]">
+          <div id="progressBar" class="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-amber-400 rounded-full transition-all duration-500" style="width: 0%"></div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT CONTAINER -->
-  <main class="flex-1 max-w-md w-full mx-auto px-4 py-4 space-y-6">
+  <!-- Toast Notification Banner -->
+  <div id="toastBanner" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 hidden px-4 py-2.5 rounded-2xl bg-slate-900/95 border border-emerald-500/40 text-emerald-300 text-xs font-semibold shadow-2xl flex items-center gap-2 backdrop-blur-md">
+    <span id="toastIcon">✅</span>
+    <span id="toastText">İşlem tamamlandı</span>
+  </div>
 
-    <!-- SESLE HIZLI RANDEVU & TOPLANTI KAYIT KARTI (HER ZAMAN GÖRÜNÜR) -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950/60 via-[#131B2A] to-purple-950/40 rounded-3xl p-4 border border-indigo-500/40 shadow-xl shadow-indigo-950/30">
-      <div class="flex items-center justify-between mb-3">
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-md mx-auto px-4 pt-4 space-y-4">
+
+    <!-- VOICE APPOINTMENT ASSISTANT CARD (Always Accessible on Top) -->
+    <div class="bg-gradient-to-br from-indigo-950/70 via-[#131B2A] to-[#131B2A] rounded-3xl p-4 border border-indigo-500/30 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-500/20 text-indigo-400 text-sm">🎙️</span>
+          <span class="text-base">🎙️</span>
           <div>
-            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Sesli Randevu Asistanı</h3>
-            <p class="text-[10px] text-slate-400">Örn: "Yarın saat 1'de takım toplantısı"</p>
+            <h2 class="text-xs font-bold text-white uppercase tracking-wider">Sesli Randevu Asistanı</h2>
+            <p class="text-[10px] text-indigo-300/80">"4 Kasım saat 14.00'da doktor randevum var" deyin</p>
           </div>
         </div>
-        <span class="text-[10px] font-mono font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">2 Saat Kala Alarm</span>
+        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">2 Saat Kala Alarm</span>
       </div>
 
-      <!-- KOCAMAN SES KAYIT / BAS-KONUŞ BUTONU -->
-      <div class="flex items-center gap-3">
-        <button id="mainVoiceRecordBtn" onclick="toggleSmartVoiceInput()" class="relative shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 text-white flex items-center justify-center shadow-lg shadow-indigo-600/40 transition active:scale-95 group">
-          <span id="voicePulseRing" class="hidden absolute inset-0 rounded-2xl bg-rose-500 animate-ping opacity-60"></span>
-          <svg id="mainMicSvg" class="w-6 h-6 transition-transform group-active:scale-90" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-          </svg>
+      <!-- Push-to-Talk & Quick Input Row -->
+      <div class="flex items-center gap-2.5">
+        <button id="voiceRecordBtn" onclick="toggleVoiceAssistant()" class="relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/25 shrink-0 transition active:scale-95">
+          <span id="micBtnIcon" class="text-xl">🎤</span>
         </button>
-
-        <div class="flex-1 min-w-0">
-          <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-2.5 flex items-center justify-between gap-2">
-            <input type="text" id="smartQuickInput" placeholder="Mikrofona bas ve söyle ya da buraya yaz..." class="bg-transparent text-xs text-white placeholder-slate-500 w-full focus:outline-none">
-            <button onclick="parseAndSaveMeeting(document.getElementById('smartQuickInput').value)" class="shrink-0 p-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition" title="Kaydet">
-              ➔
-            </button>
-          </div>
-          <div id="voiceStatusText" class="text-[10px] font-medium text-slate-400 mt-1 pl-1 truncate">
-            Mikrofona basıp konuş, 2 saat kala alarmla takvime işlesin.
-          </div>
-        </div>
-      </div>
-
-      <!-- Son Eklenen / Sıradaki Yaklaşan Randevu Bildirim Şeridi -->
-      <div id="quickNextMeetingStrip" class="hidden mt-3 pt-3 border-t border-indigo-500/20 flex items-center justify-between text-xs">
-        <div class="flex items-center gap-2 truncate pr-2">
-          <span class="text-xs">⏰</span>
-          <span id="quickNextMeetingText" class="truncate font-semibold text-slate-200"></span>
-        </div>
-        <div class="flex items-center gap-1.5 shrink-0">
-          <a id="quickGCalLink" href="#" target="_blank" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold border border-indigo-500/30 hover:bg-indigo-500/30 transition">Google Takvim</a>
-          <button id="quickIcsBtn" onclick="" class="px-2 py-1 rounded-md bg-slate-800 text-slate-300 text-[10px] font-medium hover:bg-slate-700 transition">📲 İndir</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- NAVIGATION TABS: Görevler vs Analiz -->
-    <div class="flex rounded-xl bg-slate-900/80 p-1 border border-slate-800">
-      <button onclick="switchTab('tasks')" id="tabTasksBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 bg-[#131B2A] text-white shadow">
-        ⚡ Rutinler
-      </button>
-      <button onclick="switchTab('meetings')" id="tabMeetingsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5">
-        <span>📅 Tüm Randevular</span>
-        <span id="upcomingBadge" class="hidden px-1.5 py-0.2 text-[10px] font-mono bg-indigo-500 text-white rounded-full">0</span>
-      </button>
-      <button onclick="switchTab('stats')" id="tabStatsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200">
-        📊 Analiz
-      </button>
-    </div>
-
-    <!-- VIEW 1: TASKS LIST -->
-    <div id="viewTasks" class="space-y-6 pb-20">
-      <!-- Quick Meeting Banner (if any nearest) -->
-      <div id="quickMeetingBanner" class="hidden p-3 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
-        <div class="flex items-center gap-2 truncate pr-2">
-          <span>⏰</span>
-          <span id="nextMeetingTitle" class="truncate font-semibold text-indigo-200"></span>
-        </div>
-        <button onclick="switchTab('meetings')" class="text-[11px] font-bold text-indigo-400 underline shrink-0">Gör</button>
-      </div>
-
-      <!-- Action Button: Add Task & Reset Day -->
-      <div class="flex items-center gap-2">
-        <button onclick="openAddTaskModal()" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-md shadow-emerald-950/40 flex items-center justify-center gap-1.5 transition active:scale-[0.98]">
-          <span>+</span>
-          <span>Yeni Görev Ekle</span>
-        </button>
-        <button onclick="confirmResetDay()" class="py-2.5 px-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 font-semibold text-xs border border-slate-700/50 transition active:scale-[0.98]" title="Yeni güne geç / Listeyi sıfırla">
-          🔄 Günü Sıfırla
-        </button>
-      </div>
-
-      <!-- Task Blocks List Container -->
-      <div id="taskBlocksList" class="space-y-5">
-        <!-- Rendered via JavaScript -->
-      </div>
-    </div>
-
-    <!-- VIEW 2: MEETINGS & APPOINTMENTS -->
-    <div id="viewMeetings" class="space-y-6 hidden pb-20">
-      <!-- Manual Quick Input Form -->
-      <div class="bg-[#131B2A] rounded-2xl p-4 border border-slate-800 space-y-3 shadow-lg">
-        <div class="flex items-center justify-between">
-          <h3 class="text-xs font-bold text-white uppercase tracking-wider">Manuel Randevu Ekle</h3>
-          <span class="text-[10px] text-slate-500">Sesle veya elle girilebilir</span>
-        </div>
-
-        <div class="space-y-2.5">
-          <!-- Voice or Text Input -->
-          <div class="relative flex items-center">
-            <input type="text" id="meetingTitleInput" placeholder="Örn: 15:00 Sponsorluk Görüşmesi" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-10 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-            <!-- Voice Dictation Button (Web Speech API) -->
-            <button id="voiceBtn" onclick="toggleVoiceDictation()" class="absolute right-2 p-1.5 text-slate-400 hover:text-white transition rounded-lg" title="Sesle Yazdır">
-              <svg id="micIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
-              <span id="listeningIndicator" class="hidden absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-            </button>
-          </div>
-
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <label class="text-[10px] text-slate-400 font-semibold block mb-1">Tarih</label>
-              <input type="date" id="meetingDateInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
-            </div>
-            <div>
-              <label class="text-[10px] text-slate-400 font-semibold block mb-1">Saat</label>
-              <input type="time" id="meetingTimeInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
-            </div>
-          </div>
-
-          <button onclick="saveQuickMeeting()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition active:scale-[0.99] flex items-center justify-center gap-1.5">
-            <span>📌</span> Randevuyu Kaydet (+15 XP)
+        <div class="flex-1 relative">
+          <input id="voiceInputText" type="text" placeholder="Mikrofona basıp konuşun veya yazın..." onkeydown="if(event.key==='Enter') processNaturalLanguageCommand()" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-2xl px-3.5 py-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+          <button onclick="processNaturalLanguageCommand()" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold transition">
+            Ekle
           </button>
         </div>
       </div>
 
-      <!-- Upcoming List -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between px-1">
-          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Planlanan Görüşmeler</h3>
-          <span id="totalMeetingsCount" class="text-xs font-mono text-slate-500 font-semibold">0 Randevu</span>
-        </div>
+      <p id="voiceStatusText" class="text-[10px] text-slate-400 hidden"></p>
 
-        <div id="meetingsListContainer" class="space-y-2.5">
-          <!-- Rendered via JavaScript -->
+      <!-- Latest / Next Meeting Action Strip -->
+      <div id="quickNextMeetingStrip" class="hidden pt-2.5 border-t border-indigo-500/20 flex items-center justify-between text-xs gap-2">
+        <div class="flex items-center gap-1.5 truncate">
+          <span>⏰</span>
+          <span id="quickNextMeetingText" class="truncate font-semibold text-slate-200 text-[11px]"></span>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a id="quickGCalLink" href="#" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 text-[10px] font-bold border border-indigo-500/30 hover:bg-indigo-500/30 transition">Google Takvim</a>
+          <button id="quickIcsBtn" class="px-2 py-1 rounded-lg bg-slate-800 text-emerald-300 border border-emerald-500/30 text-[10px] font-bold hover:bg-slate-700 transition">📲 Apple Takvim</button>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 3: WEEKLY STATS -->
-    <div id="viewStats" class="space-y-6 hidden pb-20">
-      <div class="bg-[#131B2A] rounded-2xl p-4 border border-slate-800 space-y-4">
+    <!-- BIOMETRIC & APPLE SCREEN TIME TELEMETRY CARD -->
+    <div class="bg-[#131B2A] rounded-3xl p-4 border border-slate-800 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-base">📡</span>
+          <div>
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Biyometrik & Dijital Telemetri</h3>
+            <p class="text-[10px] text-slate-400">Fitbit Uyku/Adım + Apple Ekran Süresi</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button onclick="openClipboardSyncModal()" class="px-2.5 py-1 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/20 text-[10px] font-bold transition flex items-center gap-1">
+            <span>📋</span> Kestirmeden Al
+          </button>
+          <button onclick="openShortcutGuideModal()" class="w-6 h-6 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs flex items-center justify-center" title="Kurulum Rehberi">
+            ℹ️
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Column Telemetry Inputs -->
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <!-- Steps -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-2.5 flex flex-col justify-between">
+          <span class="text-[10px] text-slate-400 font-semibold">👟 Adım</span>
+          <div class="my-1">
+            <input type="number" id="metricSteps" oninput="updateTelemetryMetrics()" placeholder="0" class="w-full bg-transparent text-center font-mono font-bold text-base text-white focus:outline-none">
+          </div>
+          <span id="badgeSteps" class="text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded">0 XP</span>
+        </div>
+
+        <!-- Sleep -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-2.5 flex flex-col justify-between">
+          <span class="text-[10px] text-slate-400 font-semibold">💤 Uyku (Saat)</span>
+          <div class="my-1">
+            <input type="number" step="0.1" id="metricSleep" oninput="updateTelemetryMetrics()" placeholder="0.0" class="w-full bg-transparent text-center font-mono font-bold text-base text-white focus:outline-none">
+          </div>
+          <span id="badgeSleep" class="text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded">0 XP</span>
+        </div>
+
+        <!-- Apple Screen Time -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-2.5 flex flex-col justify-between">
+          <span class="text-[10px] text-slate-400 font-semibold">📵 Ekran (Saat)</span>
+          <div class="my-1">
+            <input type="number" step="0.1" id="metricScreen" oninput="updateTelemetryMetrics()" placeholder="0.0" class="w-full bg-transparent text-center font-mono font-bold text-base text-white focus:outline-none">
+          </div>
+          <span id="badgeScreen" class="text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded">0 XP</span>
+        </div>
+      </div>
+
+      <!-- Net Telemetry Status -->
+      <div class="text-[10px] font-medium text-slate-400 bg-slate-900/50 px-3 py-1.5 rounded-xl border border-slate-800/80 flex items-center justify-between">
+        <span>Gerçek Veri XP Etkisi:</span>
+        <span id="telemetryNetXp" class="font-mono font-bold text-emerald-400">+0 XP</span>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="grid grid-cols-3 gap-1.5 bg-[#131B2A] p-1.5 rounded-2xl border border-slate-800">
+      <button id="tabBtnTasks" onclick="switchTab('tasks')" class="py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 shadow transition">
+        ⚡ Günlük Rutin
+      </button>
+      <button id="tabBtnMeetings" onclick="switchTab('meetings')" class="py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition">
+        📅 Randevular
+      </button>
+      <button id="tabBtnStats" onclick="switchTab('stats')" class="py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition">
+        📊 Verimlilik
+      </button>
+    </div>
+
+    <!-- TAB 1: DAILY TASKS VIEW -->
+    <section id="viewTasks" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Günün Görev Blokları</h2>
+        <div class="flex items-center gap-2">
+          <button onclick="openAddTaskModal()" class="px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition">
+            + Görev Ekle
+          </button>
+          <button onclick="confirmResetDay()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition">
+            🔄 Günü Bitir & Kaydet
+          </button>
+        </div>
+      </div>
+
+      <!-- Task Blocks Container -->
+      <div id="taskBlocksList" class="space-y-5"></div>
+    </section>
+
+    <!-- TAB 2: MEETINGS & CALENDAR VIEW -->
+    <section id="viewMeetings" class="hidden space-y-4">
+      <div class="bg-[#131B2A] rounded-3xl p-4 border border-slate-800 space-y-3">
         <div class="flex items-center justify-between">
-          <h3 class="text-sm font-bold text-white">Son 7 Günlük Performans</h3>
-          <span class="text-xs text-slate-400">Hedef: 200+ XP</span>
+          <h3 class="text-xs font-bold text-white uppercase tracking-wider">Kayıtlı Randevular & Toplantılar</h3>
+          <span class="text-[10px] text-slate-400">Tamamlanan: +15 XP</span>
+        </div>
+        <div id="meetingsList" class="space-y-2.5"></div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ANALYTICS & CHART VIEW -->
+    <section id="viewStats" class="hidden space-y-4">
+      <div class="bg-[#131B2A] rounded-3xl p-4 border border-slate-800 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Haftalık XP Verimlilik Grafiği</h3>
+            <p class="text-[10px] text-slate-400">Son 7 günün süreç performansı</p>
+          </div>
+          <span id="avgXpBadge" class="font-mono text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-xl border border-emerald-500/20">Ort: 0 XP</span>
         </div>
 
-        <!-- Weekly Bar Chart -->
-        <div id="weeklyChartContainer" class="flex items-end justify-between h-44 pt-6 pb-2 px-1 border-b border-slate-800/80 gap-2">
-          <!-- Rendered dynamically -->
-        </div>
+        <!-- Bar Chart Container -->
+        <div id="weeklyChart" class="h-40 flex items-end justify-between gap-2 pt-6 pb-2 px-2 bg-slate-900/60 rounded-2xl border border-slate-800/80"></div>
 
-        <!-- Weekly Summary Cards -->
-        <div class="grid grid-cols-2 gap-3 pt-2">
-          <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80">
-            <span class="text-[11px] text-slate-400 block font-medium">Haftalık Ortalama</span>
-            <span id="weeklyAvgXp" class="text-xl font-bold font-mono text-emerald-400 mt-0.5 block">0 XP</span>
-          </div>
-          <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800/80">
-            <span class="text-[11px] text-slate-400 block font-medium">Elit Gün Sayısı</span>
-            <span id="eliteDaysCount" class="text-xl font-bold font-mono text-amber-400 mt-0.5 block">0 Gün</span>
-          </div>
+        <!-- History Log -->
+        <div class="space-y-2 pt-2">
+          <h4 class="text-[11px] font-bold text-slate-400 uppercase">Geçmiş Gün Kayıtları</h4>
+          <div id="historyList" class="space-y-2"></div>
         </div>
       </div>
-
-      <!-- Maslow & Mindset Tip -->
-      <div class="bg-gradient-to-br from-indigo-950/40 to-slate-900 p-4 rounded-2xl border border-indigo-900/40 text-xs text-slate-300 space-y-2">
-        <div class="flex items-center gap-2 text-indigo-400 font-bold">
-          <span>🧠</span>
-          <span>Süreç Odaklılık Rehberi</span>
-        </div>
-        <p class="leading-relaxed text-slate-400">
-          "Sonuç sadece doğru tekrarlanan mikro adımların yan ürünüdür." Sabahki 5 dakikalık mobilite ve akşamki bakım önemsiz görünse de piramidin temelini sağlam tutarak yüksek odaklı iş ve saha performansını mümkün kılar.
-        </p>
-      </div>
-    </div>
+    </section>
 
   </main>
 
   <!-- ADD TASK MODAL -->
-  <div id="addTaskModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center hidden p-0 sm:p-4 transition-opacity">
-    <div class="bg-[#131B2A] border border-slate-700/80 w-full max-w-md rounded-t-3xl sm:rounded-2xl p-5 space-y-4 shadow-2xl">
+  <div id="addTaskModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden p-4">
+    <form onsubmit="addNewTask(event)" class="bg-[#131B2A] border border-slate-700 max-w-sm w-full rounded-3xl p-5 space-y-4 shadow-2xl">
       <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-        <h3 class="text-base font-bold text-white flex items-center gap-2">
-          <span>✨</span> Yeni Görev Ekle
-        </h3>
-        <button onclick="closeAddTaskModal()" class="text-slate-400 hover:text-white p-1">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
+        <h3 class="text-sm font-bold text-white">Yeni Rutin / Görev Ekle</h3>
+        <button type="button" onclick="closeAddTaskModal()" class="text-slate-400 hover:text-white p-1">✕</button>
       </div>
 
-      <div class="space-y-3 text-xs">
+      <div class="space-y-3">
         <div>
-          <label class="block text-slate-400 font-semibold mb-1">Görev Başlığı (Emoji ile başlayabilir)</label>
-          <input type="text" id="newTaskTitle" placeholder="Örn: 🧘‍♂️ 10 Dk Meditasyon" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-        </div>
-
-        <div>
-          <label class="block text-slate-400 font-semibold mb-1">Açıklama / Kriter (Opsiyonel)</label>
-          <input type="text" id="newTaskDesc" placeholder="Örn: Zihinsel dinginlik ve odak" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+          <label class="text-[11px] font-semibold text-slate-400 block mb-1">Görev Başlığı</label>
+          <input id="taskTitleInput" type="text" required placeholder="Örn: 10 dk Kreatin & Takviye" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-emerald-500">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-slate-400 font-semibold mb-1">Blok / Zaman</label>
-            <select id="newTaskBlock" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-emerald-500">
-              <option value="morning">🌅 Sabah Bloğu</option>
-              <option value="day">☀️ Gün İçi Bloğu</option>
-              <option value="evening">🏈 Akşam Bloğu</option>
-              <option value="night">🌙 Gece Bloğu</option>
+            <label class="text-[11px] font-semibold text-slate-400 block mb-1">Zaman Bloğu</label>
+            <select id="taskBlockSelect" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none">
+              <option value="morning">🌅 Sabah</option>
+              <option value="day">💼 Gün İçi</option>
+              <option value="evening">🏈 Akşam & İdman</option>
+              <option value="night">🌙 Gece Kapanış</option>
             </select>
           </div>
           <div>
-            <label class="block text-slate-400 font-semibold mb-1">XP Puanı</label>
-            <input type="number" id="newTaskXp" value="15" min="5" max="100" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-mono focus:outline-none focus:border-emerald-500">
+            <label class="text-[11px] font-semibold text-slate-400 block mb-1">Puan (XP)</label>
+            <input id="taskXpInput" type="number" value="15" min="5" max="100" step="5" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none">
           </div>
         </div>
       </div>
 
-      <div class="pt-2 flex gap-2">
-        <button onclick="closeAddTaskModal()" class="flex-1 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">İptal</button>
-        <button onclick="saveNewTask()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg shadow-emerald-900/40">Görevi Kaydet</button>
+      <div class="flex gap-2 pt-2">
+        <button type="button" onclick="closeAddTaskModal()" class="flex-1 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">İptal</button>
+        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-extrabold">Listeye Ekle</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- CLIPBOARD / SHORTCUT PASTE MODAL -->
+  <div id="clipboardModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden p-4">
+    <div class="bg-[#131B2A] border border-slate-700 max-w-sm w-full rounded-3xl p-5 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider">📋 Kestirme Verisini Aktar</h3>
+        <button onclick="closeClipboardSyncModal()" class="text-slate-400 hover:text-white p-1">✕</button>
+      </div>
+      <p class="text-[11px] text-slate-300">Apple Kestirmeler'den kopyalanan metni aşağıya yapıştırın veya otomatik okuyun:</p>
+      <input id="clipboardTextInput" type="text" placeholder="steps=11200 sleep=7.5 screen=2.8" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-indigo-500">
+      <div class="flex gap-2">
+        <button onclick="tryReadNativeClipboard()" class="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-300 text-xs font-bold">Panodan Yapıştır</button>
+        <button onclick="applyClipboardText()" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold">Uygula</button>
       </div>
     </div>
   </div>
 
-  <!-- CELEBRATION MODAL (Hitting 200 XP) -->
+  <!-- APPLE SHORTCUT GUIDE MODAL -->
+  <div id="shortcutGuideModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden p-4">
+    <div class="bg-[#131B2A] border border-slate-700/80 max-w-sm w-full rounded-3xl p-5 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+          <span>📲</span> Apple Kestirmeler Adım Adım Rehberi
+        </h3>
+        <button onclick="closeShortcutGuideModal()" class="text-slate-400 hover:text-white p-1">✕</button>
+      </div>
+
+      <div class="space-y-3 text-[11px] text-slate-300 leading-relaxed max-h-[65vh] overflow-y-auto pr-1">
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-indigo-500/30 space-y-1">
+          <div class="font-bold text-indigo-300">1. Adım: Kestirmeler Uygulamasını Açın</div>
+          <p class="text-slate-400">iPhone'unuzdaki yerleşik <strong>Kestirmeler (Shortcuts)</strong> uygulamasını açın ve sağ üstteki <strong>"+"</strong> butonuna basarak yeni bir kestirme oluşturun.</p>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-indigo-500/30 space-y-1">
+          <div class="font-bold text-indigo-300">2. Adım: Sağlık Verilerini Ekleyin</div>
+          <p class="text-slate-400">"İşlem Ekle" diyerek sırasıyla <strong>"Sağlık Örneklerini Bul"</strong> eylemini ekleyin. Adım sayısını ve uyku süresini bu eylemle çekebilirsiniz.</p>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-indigo-500/30 space-y-1">
+          <div class="font-bold text-indigo-300">3. Adım: URL Aç Eylemi Ekleyin</div>
+          <p class="text-slate-400">Arama çubuğuna "URL Aç" yazın ve ekleyin. URL kısmına aşağıdaki örnek bağlantıyı yapıştırın (kendi site adresinizle güncelleyin):</p>
+          <div class="bg-slate-950 p-2 rounded border border-slate-800 text-[10px] text-emerald-400 font-mono break-all select-all" id="guideSampleUrl">
+            https://kullaniciadin.github.io/rpg/?steps=10500&sleep=7.2&screen=2.5
+          </div>
+          <button onclick="copyGuideSampleUrl()" class="w-full mt-1 py-1 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[10px]">Örnek URL'yi Kopyala</button>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-slate-900 border border-indigo-500/30 space-y-1">
+          <div class="font-bold text-indigo-300">4. Adım: Otomasyon (Otomatik Gönderim)</div>
+          <p class="text-slate-400">"Otomasyonlar" sekmesine gidip <strong>"Günün belirli bir saati"</strong> (Örn: 23:00) seçin ve bu kestirmeyi çalıştıracak şekilde ayarlayın. Artık her gece telefonunuz verileri otomatik olarak RPG paneline gönderecektir!</p>
+        </div>
+      </div>
+
+      <button onclick="closeShortcutGuideModal()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs">
+        Anladım, Kapat
+      </button>
+    </div>
+  </div>
+
+  <!-- CELEBRATION MODAL -->
   <div id="celebrationModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center hidden p-4">
-    <div class="bg-[#131B2A] border border-amber-500/40 max-w-xs w-full rounded-2xl p-6 text-center space-y-4 shadow-2xl relative">
+    <div class="bg-[#131B2A] border border-amber-500/40 max-w-xs w-full rounded-3xl p-6 text-center space-y-4 shadow-2xl">
       <div class="w-16 h-16 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full flex items-center justify-center text-3xl mx-auto animate-bounce">
         🏆
       </div>
       <div>
-        <h4 class="text-lg font-bold text-white">Elit Sporcu Seviyesi!</h4>
+        <h4 class="text-lg font-extrabold text-white">Elit Sporcu Seviyesi!</h4>
         <p class="text-xs text-slate-400 mt-1">Bugün 200+ XP barajını aştın. Süreç disiplinin zirvede!</p>
       </div>
-      <button onclick="closeCelebrationModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-black font-extrabold text-xs shadow-lg">
+      <button onclick="closeCelebrationModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs shadow-lg">
         Gelişime Devam Et ⚡
       </button>
     </div>
   </div>
 
-  <!-- APPLICATION LOGIC -->
+  <!-- APPLICATION SCRIPT -->
   <script>
-    // --- Web Audio Synthesizer (No external sound files required) ---
-    let audioCtx = null;
-    let isSoundEnabled = true;
-
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-    }
-
-    function playTone(freq, type = 'sine', duration = 0.08, startTime = 0) {
-      if (!isSoundEnabled) return;
+    // --- GENERATE DYNAMIC PNG ICON FOR IOS HOME SCREEN ---
+    (function generateAppIcon() {
       try {
-        initAudio();
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + startTime);
-        gain.gain.setValueAtTime(0.12, audioCtx.currentTime + startTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + startTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(audioCtx.currentTime + startTime);
-        osc.stop(audioCtx.currentTime + startTime + duration);
-      } catch (e) {
-        console.warn('Audio error:', e);
+        const canvas = document.createElement('canvas');
+        canvas.width = 180;
+        canvas.height = 180;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#0B0F17';
+        ctx.fillRect(0, 0, 180, 180);
+        ctx.strokeStyle = '#10B981';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(12, 12, 156, 156);
+        ctx.fillStyle = '#F59E0B';
+        ctx.beginPath();
+        ctx.moveTo(105, 28);
+        ctx.lineTo(48, 98);
+        ctx.lineTo(88, 98);
+        ctx.lineTo(75, 152);
+        ctx.lineTo(132, 82);
+        ctx.lineTo(92, 82);
+        ctx.closePath();
+        ctx.fill();
+        const touchLink = document.getElementById('appleTouchIcon');
+        if (touchLink) touchLink.href = canvas.toDataURL('image/png');
+      } catch (e) {}
+    })();
+
+    // --- DEFAULT TASKS ---
+    const DEFAULT_TASKS = [
+      { id: 'm1', block: 'morning', title: '🌅 Sabah Hijyen & Cilt Bakımı', desc: 'Diş fırçalama + sabah cilt bakım rutini', xp: 10, completed: false },
+      { id: 'm2', block: 'morning', title: '☀️ Gün Işığı & 5-10 Dk Mobilite', desc: 'Doğal ışık teması + omurga/kalça mobilitesi', xp: 15, completed: false },
+      { id: 'm3', block: 'morning', title: '🍳 Beslenme & Öğün Hazırlığı', desc: 'Günün yemeklerini planlama / evden hazırlama', xp: 15, completed: false },
+      { id: 'd1', block: 'day', title: '💼 Ana İş: Deep Work Bloğu', desc: 'Dağılmadan tamamlanan en önemli iş görevi', xp: 25, completed: false },
+      { id: 'd2', block: 'day', title: '🚀 İkinci İş / Proje Görevi', desc: 'Ek iş veya antrenörlük için kritik çıktı', xp: 20, completed: false },
+      { id: 'd3', block: 'day', title: '💧 3L Su & Maden Suyu Dengesi', desc: 'Gün boyu hidrasyon ve elektrolit takibi', xp: 15, completed: false },
+      { id: 'd4', block: 'day', title: '🧠 5 Dk Zihinsel Reset / Nefes', desc: 'İki iş arası kortizol düşürme / NSDR', xp: 10, completed: false },
+      { id: 'd5', block: 'day', title: '☕ Bütçe & Harcama Disiplini', desc: 'Dışarıdan gereksiz harcama / sipariş yapmama', xp: 15, completed: false },
+      { id: 'e1', block: 'evening', title: '🏈 Saha veya Ağırlık Antrenmanı', desc: 'Takım idmanı veya bireysel kuvvet antrenmanı', xp: 35, completed: false },
+      { id: 'e2', block: 'evening', title: '🥗 Makro & Protein Hedefi', desc: 'Evde temiz beslenme ve makro tamamlama', xp: 15, completed: false },
+      { id: 'e3', block: 'evening', title: '🦶 5 Dk Ayak Fasiya / Foam Roller', desc: 'Sakatlık önleyici rejenerasyon bakımı', xp: 10, completed: false },
+      { id: 'n1', block: 'night', title: '📖 15-20 Dk Kitap Okuma', desc: 'Uykuya geçişte entelektüel gelişim', xp: 15, completed: false },
+      { id: 'n2', block: 'night', title: '🌙 Akşam Cilt Bakımı & Diş', desc: 'Gece bakım rutini zincirini kırma', xp: 10, completed: false },
+      { id: 'n3', block: 'night', title: '📵 Uyku Disiplini & Dijital Detoks', desc: 'Yatmadan 30 dk önce ekranı bırakma', xp: 15, completed: false }
+    ];
+
+    const BLOCK_META = {
+      morning: { title: '🌅 Sabah Bloğu (Fizyolojik Temel)', color: 'text-amber-400' },
+      day: { title: '💼 Gün İçi Bloğu (Odak & Bütçe)', color: 'text-cyan-400' },
+      evening: { title: '🏈 Akşam & Antrenman (Performans)', color: 'text-emerald-400' },
+      night: { title: '🌙 Gece & Kapanış (Yenilenme)', color: 'text-indigo-400' }
+    };
+
+    // --- STATE ---
+    let tasks = [];
+    let history = [];
+    let meetings = [];
+    let telemetry = { steps: 0, sleep: 0, screen: 0 };
+    let streak = 1;
+    let isSoundEnabled = true;
+    let celebratedToday = false;
+    let isSpeechRecording = false;
+    let speechRecognition = null;
+
+    // --- WEB AUDIO SYNTHESIZER ---
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
       }
+      return audioCtx;
     }
 
     function playCheckSound() {
-      playTone(523.25, 'sine', 0.07, 0); // C5
-      playTone(659.25, 'triangle', 0.09, 0.06); // E5
-    }
-
-    function playUncheckSound() {
-      playTone(392.00, 'sine', 0.06, 0); // G4
-      playTone(329.63, 'sine', 0.08, 0.05); // E4
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.15);
+      } catch (e) {}
     }
 
     function playLevelUpSound() {
-      playTone(440, 'triangle', 0.1, 0);
-      playTone(554.37, 'triangle', 0.1, 0.08);
-      playTone(659.25, 'triangle', 0.1, 0.16);
-      playTone(880, 'sine', 0.3, 0.24);
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const notes = [523.25, 659.25, 783.99, 1046.5];
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.25);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.08);
+          osc.stop(ctx.currentTime + idx * 0.08 + 0.26);
+        });
+      } catch (e) {}
     }
 
     function toggleSound() {
@@ -437,409 +537,274 @@
       document.getElementById('soundIconOn').classList.toggle('hidden', !isSoundEnabled);
       document.getElementById('soundIconOff').classList.toggle('hidden', isSoundEnabled);
       localStorage.setItem('rpg_sound_enabled', JSON.stringify(isSoundEnabled));
-      if (isSoundEnabled) playCheckSound();
     }
 
-    // --- INITIAL DATA & CONFIGURATION ---
-    const DEFAULT_BLOCKS = [
-      { id: 'morning', title: 'Sabah Bloğu', icon: '🌅', color: 'from-amber-500/20 to-orange-500/5' },
-      { id: 'day', title: 'Gün İçi & İş Bloğu', icon: '💼', color: 'from-cyan-500/20 to-blue-500/5' },
-      { id: 'evening', title: 'Akşam & Antrenman Bloğu', icon: '🏈', color: 'from-emerald-500/20 to-lime-500/5' },
-      { id: 'night', title: 'Gece & Kapanış Bloğu', icon: '🌙', color: 'from-indigo-500/20 to-purple-500/5' }
-    ];
+    function showToast(message, icon = '✅') {
+      const banner = document.getElementById('toastBanner');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastText').textContent = message;
+      banner.classList.remove('hidden');
+      setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 3200);
+    }
 
-    const DEFAULT_TASKS = [
-      // Sabah
-      { id: 'm1', block: 'morning', title: '🌅 Hijyen & Cilt Bakımı', desc: 'Diş fırçalama + sabah cilt bakım rutini', xp: 10, completed: false },
-      { id: 'm2', block: 'morning', title: '☀️ Güneş & 5-10 Dk Mobilite', desc: 'Gün ışığı teması + kalça/omurga esnemesi', xp: 15, completed: false },
-      { id: 'm3', block: 'morning', title: '🍳 Beslenme & Gün Planı', desc: 'Öğün hazırlığı / planlama (dışarıdan yemeyi önler)', xp: 15, completed: false },
+    function getTodayString() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
 
-      // Gün İçi
-      { id: 'd1', block: 'day', title: '💼 Ana İş: Deep Work', desc: 'Bölünmeden tamamlanan öncelikli büyük iş görevi', xp: 25, completed: false },
-      { id: 'd2', block: 'day', title: '🚀 İkinci Proje Odak Bloğu', desc: 'Diğer sorumluluk/proje için tek kritik çıktı', xp: 20, completed: false },
-      { id: 'd3', block: 'day', title: '💧 3L Su & Elektrolit', desc: '3L su + maden suyu/elektrolit dengesi', xp: 15, completed: false },
-      { id: 'd4', block: 'day', title: '🧠 5 Dk Zihinsel Reset / Nefes', desc: 'NSDR / 4-7-8 nefes veya kortizol reset', xp: 10, completed: false },
-      { id: 'd5', block: 'day', title: '☕ Harcama Disiplini', desc: 'Plansız dışarı harcaması yapmama', xp: 15, completed: false },
+    function generateDefaultHistory() {
+      const arr = [];
+      const sampleScores = [145, 165, 130, 190, 175, 205];
+      for (let i = 6; i >= 1; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        arr.push({ date: dateStr, xp: sampleScores[6 - i] || 150 });
+      }
+      return arr;
+    }
 
-      // Akşam
-      { id: 'e1', block: 'evening', title: '🏈 Saha / Salon Antrenmanı', desc: 'Takım idmanı veya ağırlık seansı', xp: 35, completed: false },
-      { id: 'e2', block: 'evening', title: '🥗 Günlük Makro/Beslenme', desc: 'Hedef kalori/protein dengesini sağlama', xp: 15, completed: false },
-      { id: 'e3', block: 'evening', title: '🦶 5 Dk Rejenerasyon / Fasiya', desc: 'Ayak tabanı / foam roller / esneme', xp: 10, completed: false },
-
-      // Gece
-      { id: 'n1', block: 'night', title: '📖 15-20 Dk Kitap Okuma', desc: 'Zihinsel gelişim ve sakinleşme', xp: 15, completed: false },
-      { id: 'n2', block: 'night', title: '🌙 Akşam Bakım & Cilt', desc: 'Diş fırçalama + gece cilt bakımı', xp: 10, completed: false },
-      { id: 'n3', block: 'night', title: '📵 Dijital Detoks & Uyku', desc: 'Uykudan 30 dk önce ekranı bırakma', xp: 15, completed: false }
-    ];
-
-    // --- STATE MANAGEMENT ---
-    let tasks = [];
-    let history = []; // array of { date: 'YYYY-MM-DD', xp: number }
-    let meetings = []; // array of { id, title, datetime, completed: bool }
-    let streak = 1;
-    let celebratedToday = false;
-    let isSpeechRecording = false;
-    let speechRecognition = null;
-
-    // Load from LocalStorage
+    // --- STORAGE & INITIALIZATION ---
     function loadState() {
       const savedTasks = localStorage.getItem('rpg_tasks');
       const savedHistory = localStorage.getItem('rpg_history');
       const savedMeetings = localStorage.getItem('rpg_meetings');
+      const savedTelemetry = localStorage.getItem('rpg_telemetry');
       const savedStreak = localStorage.getItem('rpg_streak');
       const savedSound = localStorage.getItem('rpg_sound_enabled');
       const savedDate = localStorage.getItem('rpg_today_date');
 
       const todayStr = getTodayString();
 
-      // Check if day changed
+      tasks = savedTasks ? JSON.parse(savedTasks) : DEFAULT_TASKS;
+      history = savedHistory ? JSON.parse(savedHistory) : generateDefaultHistory();
+      meetings = savedMeetings ? JSON.parse(savedMeetings) : [];
+      telemetry = savedTelemetry ? JSON.parse(savedTelemetry) : { steps: 0, sleep: 0, screen: 0 };
+      streak = savedStreak ? parseInt(savedStreak, 10) : 1;
+
       if (savedDate && savedDate !== todayStr) {
-        archivePreviousDay(savedDate);
+        const prevXp = Math.max(0, tasks.filter(t => t.completed).reduce((s, t) => s + t.xp, 0) + calculateTelemetryXp());
+        if (prevXp > 0) {
+          history.push({ date: savedDate, xp: prevXp });
+          if (prevXp >= 130) streak += 1;
+        }
+        tasks = tasks.map(t => ({ ...t, completed: false }));
+        telemetry = { steps: 0, sleep: 0, screen: 0 };
+        localStorage.setItem('rpg_today_date', todayStr);
+        saveState();
       } else {
         localStorage.setItem('rpg_today_date', todayStr);
       }
 
-      tasks = savedTasks ? JSON.parse(savedTasks) : DEFAULT_TASKS;
-      history = savedHistory ? JSON.parse(savedHistory) : generateDefaultHistory();
-      meetings = savedMeetings ? JSON.parse(savedMeetings) : generateDefaultMeetings();
-      streak = savedStreak ? parseInt(savedStreak, 10) : 1;
-      
       if (savedSound !== null) {
         isSoundEnabled = JSON.parse(savedSound);
         document.getElementById('soundIconOn').classList.toggle('hidden', !isSoundEnabled);
         document.getElementById('soundIconOff').classList.toggle('hidden', isSoundEnabled);
       }
 
-      setupDefaultMeetingTime();
+      checkUrlParamsForTelemetry();
     }
 
     function saveState() {
       localStorage.setItem('rpg_tasks', JSON.stringify(tasks));
       localStorage.setItem('rpg_history', JSON.stringify(history));
       localStorage.setItem('rpg_meetings', JSON.stringify(meetings));
+      localStorage.setItem('rpg_telemetry', JSON.stringify(telemetry));
       localStorage.setItem('rpg_streak', streak.toString());
     }
 
-    function generateDefaultMeetings() {
-      const now = new Date();
-      // Tomorrow at 15:00
-      const tomorrow = new Date(now);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowDate = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}T15:00`;
-
-      return [
-        {
-          id: 'meet_default_1',
-          title: '🏈 Takım Taktik & Analiz Toplantısı',
-          datetime: tomorrowDate,
-          completed: false
+    // --- TELEMETRY LOGIC (APPLE SHORTCUTS & FITBIT) ---
+    function checkUrlParamsForTelemetry() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        let updated = false;
+        if (params.has('steps')) {
+          telemetry.steps = parseInt(params.get('steps'), 10) || 0;
+          updated = true;
         }
-      ];
+        if (params.has('sleep')) {
+          telemetry.sleep = parseFloat(params.get('sleep').replace(',', '.')) || 0;
+          updated = true;
+        }
+        if (params.has('screen')) {
+          telemetry.screen = parseFloat(params.get('screen').replace(',', '.')) || 0;
+          updated = true;
+        }
+        if (updated) {
+          saveState();
+          playLevelUpSound();
+          showToast('Apple Kestirmeler verisi senkronize edildi!', '📡');
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+      } catch (e) {}
     }
 
-    function setupDefaultMeetingTime() {
-      const now = new Date();
-      const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-      const hours = String(now.getHours() + 1).padStart(2, '0');
-      const timeStr = `${hours}:00`;
+    function calculateTelemetryXp() {
+      let xp = 0;
+      if (telemetry.steps >= 10000) xp += 20;
+      else if (telemetry.steps >= 7500) xp += 10;
 
-      const dateInput = document.getElementById('meetingDateInput');
-      const timeInput = document.getElementById('meetingTimeInput');
-      if (dateInput) dateInput.value = dateStr;
-      if (timeInput) timeInput.value = timeStr;
-    }
+      if (telemetry.sleep >= 7.0) xp += 25;
+      else if (telemetry.sleep >= 6.0) xp += 10;
 
-    function saveState() {
-      localStorage.setItem('rpg_tasks', JSON.stringify(tasks));
-      localStorage.setItem('rpg_history', JSON.stringify(history));
-      localStorage.setItem('rpg_meetings', JSON.stringify(meetings));
-      localStorage.setItem('rpg_streak', streak.toString());
-    }
-
-    function getTodayString() {
-      const now = new Date();
-      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-    }
-
-    function generateDefaultHistory() {
-      const list = [];
-      const now = new Date();
-      for (let i = 6; i >= 1; i--) {
-        const d = new Date(now);
-        d.setDate(d.getDate() - i);
-        const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-        // Realistic sample past data
-        const sampleXps = [145, 175, 130, 205, 190, 160];
-        list.push({ date: dateStr, xp: sampleXps[6 - i] || 150 });
+      if (telemetry.screen > 0) {
+        if (telemetry.screen <= 3.5) xp += 20;
+        else if (telemetry.screen > 5.0) xp -= 15;
       }
-      return list;
+      return xp;
     }
 
-    function archivePreviousDay(prevDateStr) {
-      const totalXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
-      history.push({ date: prevDateStr, xp: totalXp });
-      if (history.length > 14) history.shift();
+    function renderTelemetryUI() {
+      const stepsInput = document.getElementById('metricSteps');
+      const sleepInput = document.getElementById('metricSleep');
+      const screenInput = document.getElementById('metricScreen');
 
-      if (totalXp >= 130) {
-        streak += 1;
+      if (stepsInput && document.activeElement !== stepsInput) stepsInput.value = telemetry.steps || '';
+      if (sleepInput && document.activeElement !== sleepInput) sleepInput.value = telemetry.sleep || '';
+      if (screenInput && document.activeElement !== screenInput) screenInput.value = telemetry.screen || '';
+
+      const badgeSteps = document.getElementById('badgeSteps');
+      const badgeSleep = document.getElementById('badgeSleep');
+      const badgeScreen = document.getElementById('badgeScreen');
+      const netXpEl = document.getElementById('telemetryNetXp');
+
+      if (telemetry.steps >= 10000) {
+        badgeSteps.textContent = '+20 XP';
+        badgeSteps.className = 'text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded';
+      } else if (telemetry.steps >= 7500) {
+        badgeSteps.textContent = '+10 XP';
+        badgeSteps.className = 'text-[9px] font-bold text-cyan-400 bg-cyan-500/10 px-1 py-0.5 rounded';
       } else {
-        streak = 1;
+        badgeSteps.textContent = '0 XP';
+        badgeSteps.className = 'text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded';
       }
 
-      // Reset tasks completion for the new day
-      tasks = tasks.map(t => ({ ...t, completed: false }));
-      celebratedToday = false;
-      localStorage.setItem('rpg_today_date', getTodayString());
+      if (telemetry.sleep >= 7.0) {
+        badgeSleep.textContent = '+25 XP (Optimal)';
+        badgeSleep.className = 'text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded';
+      } else if (telemetry.sleep >= 6.0) {
+        badgeSleep.textContent = '+10 XP';
+        badgeSleep.className = 'text-[9px] font-bold text-cyan-400 bg-cyan-500/10 px-1 py-0.5 rounded';
+      } else if (telemetry.sleep > 0) {
+        badgeSleep.textContent = 'Düşük Recov.';
+        badgeSleep.className = 'text-[9px] font-bold text-rose-400 bg-rose-500/10 px-1 py-0.5 rounded';
+      } else {
+        badgeSleep.textContent = '0 XP';
+        badgeSleep.className = 'text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded';
+      }
+
+      if (telemetry.screen > 0) {
+        if (telemetry.screen <= 3.5) {
+          badgeScreen.textContent = '+20 XP (Odak)';
+          badgeScreen.className = 'text-[9px] font-bold text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded';
+        } else if (telemetry.screen > 5.0) {
+          badgeScreen.textContent = '-15 XP (Ceza)';
+          badgeScreen.className = 'text-[9px] font-bold text-rose-400 bg-rose-500/10 px-1 py-0.5 rounded';
+        } else {
+          badgeScreen.textContent = 'Normal';
+          badgeScreen.className = 'text-[9px] font-bold text-slate-400 bg-slate-800 px-1 py-0.5 rounded';
+        }
+      } else {
+        badgeScreen.textContent = '0 XP';
+        badgeScreen.className = 'text-[9px] font-bold text-slate-500 bg-slate-800 px-1 py-0.5 rounded';
+      }
+
+      const netXp = calculateTelemetryXp();
+      if (netXpEl) {
+        netXpEl.textContent = `${netXp >= 0 ? '+' : ''}${netXp} XP`;
+        netXpEl.className = `font-mono font-bold ${netXp >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+      }
+    }
+
+    function updateTelemetryMetrics() {
+      const steps = parseInt(document.getElementById('metricSteps').value, 10) || 0;
+      const sleep = parseFloat(document.getElementById('metricSleep').value) || 0;
+      const screen = parseFloat(document.getElementById('metricScreen').value) || 0;
+      telemetry = { steps, sleep, screen };
       saveState();
-    }
-
-    // --- UI RENDERING ---
-    function renderApp() {
-      renderDate();
-      renderTasks();
-      renderMeetings();
+      renderTelemetryUI();
       updateScoreboard();
-      renderStats();
     }
 
-    // --- MEETINGS & APPOINTMENTS LOGIC ---
-    function renderMeetings() {
-      const container = document.getElementById('meetingsListContainer');
-      const countEl = document.getElementById('totalMeetingsCount');
-      const badge = document.getElementById('upcomingBadge');
-      const banner = document.getElementById('quickMeetingBanner');
-      const nextMeetingTitle = document.getElementById('nextMeetingTitle');
+    function openClipboardSyncModal() {
+      document.getElementById('clipboardModal').classList.remove('hidden');
+    }
 
-      if (!container) return;
-      container.innerHTML = '';
+    function closeClipboardSyncModal() {
+      document.getElementById('clipboardModal').classList.add('hidden');
+    }
 
-      // Sort chronological
-      meetings.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+    async function tryReadNativeClipboard() {
+      try {
+        if (navigator.clipboard && navigator.clipboard.readText) {
+          const text = await navigator.clipboard.readText();
+          if (text) {
+            document.getElementById('clipboardTextInput').value = text;
+            applyClipboardText();
+          }
+        }
+      } catch (e) {
+        showToast('Metni kutucuğa basılı tutup yapıştırın', '📋');
+      }
+    }
 
-      const activeUpcoming = meetings.filter(m => !m.completed);
-      if (countEl) countEl.textContent = `${activeUpcoming.length} Bekleyen`;
-      
-      if (activeUpcoming.length > 0) {
-        badge.classList.remove('hidden');
-        badge.textContent = activeUpcoming.length;
+    function applyClipboardText() {
+      const text = document.getElementById('clipboardTextInput').value.trim();
+      if (!text) return;
 
-        // Show banner on today's view for nearest meeting
-        const nearest = activeUpcoming[0];
-        const relativeText = getRelativeTime(nearest.datetime);
-        banner.classList.remove('hidden');
-        nextMeetingTitle.textContent = `${nearest.title} (${relativeText})`;
+      const stepsMatch = text.match(/(?:steps|adım|adim)[=:\s]*(\d+)/i);
+      const sleepMatch = text.match(/(?:sleep|uyku)[=:\s]*(\d+(?:[.,]\d+)?)/i);
+      const screenMatch = text.match(/(?:screen|ekran)[=:\s]*(\d+(?:[.,]\d+)?)/i);
+
+      let parsed = false;
+      if (stepsMatch) { telemetry.steps = parseInt(stepsMatch[1], 10); parsed = true; }
+      if (sleepMatch) { telemetry.sleep = parseFloat(sleepMatch[1].replace(',', '.')); parsed = true; }
+      if (screenMatch) { telemetry.screen = parseFloat(screenMatch[1].replace(',', '.')); parsed = true; }
+
+      if (parsed) {
+        saveState();
+        renderTelemetryUI();
+        updateScoreboard();
+        playLevelUpSound();
+        closeClipboardSyncModal();
+        showToast('Telemetri verileri güncellendi!', '📡');
       } else {
-        badge.classList.add('hidden');
-        banner.classList.add('hidden');
+        showToast('Format: steps=10000 sleep=7.5 screen=2.5', '⚠️');
       }
+    }
 
-      if (meetings.length === 0) {
-        container.innerHTML = `
-          <div class="p-6 text-center bg-slate-900/40 rounded-2xl border border-slate-800 text-slate-500 text-xs">
-            🎉 Harika! Yaklaşan veya kaçırılan toplantı yok.
-          </div>
-        `;
-        return;
-      }
+    function openShortcutGuideModal() {
+      document.getElementById('shortcutGuideModal').classList.remove('hidden');
+    }
 
-      meetings.forEach(meet => {
-        const isDone = meet.completed;
-        const relativeTime = getRelativeTime(meet.datetime);
-        const d = new Date(meet.datetime);
-        const formattedDate = `${d.getDate()} ${d.toLocaleDateString('tr-TR', { month: 'short' })} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    function closeShortcutGuideModal() {
+      document.getElementById('shortcutGuideModal').classList.add('hidden');
+    }
 
-        const card = document.createElement('div');
-        card.className = `rounded-2xl p-3.5 border transition-all duration-200 flex flex-col gap-2.5 ${
-          isDone 
-            ? 'bg-emerald-950/20 border-emerald-500/30 opacity-75' 
-            : 'bg-[#131B2A] border-slate-800 hover:border-indigo-500/50'
-        }`;
-
-        card.innerHTML = `
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3 min-w-0 flex-1 pr-2">
-              <button onclick="toggleMeetingComplete('${meet.id}')" class="w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition ${
-                isDone 
-                  ? 'bg-emerald-500 text-black shadow-md' 
-                  : 'border-2 border-indigo-400 hover:bg-indigo-500/20 text-transparent'
-              }">
-                <svg class="w-4 h-4 font-black ${isDone ? '' : 'hidden'}" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-              </button>
-              <div class="min-w-0 flex-1">
-                <h4 class="text-xs font-bold truncate ${isDone ? 'line-through text-slate-400' : 'text-slate-100'}">${escapeHtml(meet.title)}</h4>
-                <div class="flex items-center gap-2 mt-0.5">
-                  <span class="text-[11px] font-mono text-indigo-400 font-semibold">${formattedDate}</span>
-                  <span class="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">${relativeTime}</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-1.5 shrink-0">
-              <button onclick="deleteMeeting('${meet.id}')" class="text-slate-500 hover:text-rose-400 p-1.5 rounded-lg transition" title="Sil">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Quick Sync Actions -->
-          <div class="flex items-center gap-2 pt-1 border-t border-slate-800/60 text-[11px]">
-            <a href="${getGoogleCalendarUrl(meet)}" target="_blank" rel="noopener noreferrer" class="flex-1 py-1.5 px-2 text-center rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30 flex items-center justify-center gap-1 transition">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
-              Google Takvime Ekle
-            </a>
-            <button onclick="downloadIcsFile('${meet.id}')" class="py-1.5 px-3 text-center rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium transition" title="Apple & Telefon Takvimine İndir (.ics)">
-              📲 Apple/Telefon
-            </button>
-          </div>
-        `;
-
-        container.appendChild(card);
+    function copyGuideSampleUrl() {
+      const currentBaseUrl = window.location.origin + window.location.pathname;
+      const sampleUrl = `${currentBaseUrl}?steps=10500&sleep=7.2&screen=2.5`;
+      navigator.clipboard.writeText(sampleUrl).then(() => {
+        showToast('Kendi site linkiniz kopyalandı!', '📋');
+      }).catch(() => {
+        showToast('Kopyalandı', '📋');
       });
     }
 
-    function saveQuickMeeting() {
-      const titleInput = document.getElementById('meetingTitleInput');
-      const dateInput = document.getElementById('meetingDateInput');
-      const timeInput = document.getElementById('meetingTimeInput');
-
-      const title = titleInput.value.trim();
-      const date = dateInput.value;
-      const time = timeInput.value || '12:00';
-
-      if (!title) {
-        titleInput.focus();
-        return;
-      }
-
-      const datetime = `${date}T${time}`;
-      const newMeeting = {
-        id: 'meet_' + Date.now(),
-        title,
-        datetime,
-        completed: false
-      };
-
-      meetings.push(newMeeting);
-      saveState();
-
-      titleInput.value = '';
-      playCheckSound();
-      renderMeetings();
-    }
-
-    function toggleMeetingComplete(id) {
-      const meet = meetings.find(m => m.id === id);
-      if (!meet) return;
-
-      meet.completed = !meet.completed;
-      if (meet.completed) {
-        playLevelUpSound();
-        // Award XP directly into today's tasks as bonus or praise
-        const activeXp = parseInt(document.getElementById('currentXp').textContent, 10);
-        document.getElementById('currentXp').textContent = activeXp + 15;
-      } else {
-        playUncheckSound();
-      }
-
-      saveState();
-      renderMeetings();
-    }
-
-    function deleteMeeting(id) {
-      meetings = meetings.filter(m => m.id !== id);
-      saveState();
-      renderMeetings();
-    }
-
-    function getRelativeTime(isoString) {
-      const target = new Date(isoString);
-      const now = new Date();
-      const diffMs = target - now;
-      const diffHours = Math.round(diffMs / (1000 * 60 * 60));
-      const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
-
-      if (diffMs < 0) return 'Zamanı geçti';
-      if (diffHours <= 1) return '1 saat içinde!';
-      if (diffHours < 24) return `${diffHours} saat sonra`;
-      if (diffDays === 1) return 'Yarın';
-      return `${diffDays} gün sonra`;
-    }
-
-    // Google Calendar 1-Click Sync URL Generator
-    function getGoogleCalendarUrl(meet) {
-      const start = new Date(meet.datetime);
-      const end = new Date(start.getTime() + 60 * 60 * 1000); // 1 hour duration
-
-      // Yerel saat formatı (YYYYMMDDTHHmmss) - UTC dönüşümü yapmadan yerel saati korur
-      const formatLocalIso = (d) => {
-        const pad = (n) => String(n).padStart(2, '0');
-        return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-      };
-
-      const dates = `${formatLocalIso(start)}/${formatLocalIso(end)}`;
-      const title = encodeURIComponent(meet.title);
-      const details = encodeURIComponent('Yaşam RPG hatırlatıcısı. Bu etkinliğin 2 saat öncesine alarm kurulmuştur!');
-      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}`;
-    }
-
-    // Direct .ics File generator for iOS Apple Calendar & Android (2 Hours Prior Alarm)
-    function downloadIcsFile(id) {
-      const meet = meetings.find(m => m.id === id);
-      if (!meet) return;
-
-      const start = new Date(meet.datetime);
-      const end = new Date(start.getTime() + 60 * 60 * 1000);
-
-      // Yerel saat formatı (Z eklemeden doğrudan cihazın yerel saatinde algılanmasını sağlar)
-      const pad = (n) => String(n).padStart(2, '0');
-      const formatLocalIcs = (d) => {
-        return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-      };
-
-      // 2 Hours Before Alarm: -PT2H
-      const icsContent = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//Yasam RPG//Randevu Takip//TR',
-        'CALSCALE:GREGORIAN',
-        'BEGIN:VEVENT',
-        `UID:${meet.id}@yasamrpg.app`,
-        `DTSTAMP:${formatLocalIcs(new Date())}`,
-        `DTSTART:${formatLocalIcs(start)}`,
-        `DTEND:${formatLocalIcs(end)}`,
-        `SUMMARY:${meet.title}`,
-        'DESCRIPTION:Yaşam RPG üzerinden kaydedilen randevu.',
-        'BEGIN:VALARM',
-        'TRIGGER:-PT2H',
-        'ACTION:DISPLAY',
-        'DESCRIPTION:DİKKAT: Toplantıya 2 saat kaldı!',
-        'END:VALARM',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${meet.title.substring(0, 15).replace(/[^\w\sğüşıöçĞÜŞİÖÇ-]/g, '')}.ics`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }
-
-    // --- DOĞAL DİL İŞLEYİCİ & AKILLI SESLİ RANDEVU (NLP) ---
-    function toggleSmartVoiceInput() {
+    // --- TURKISH NATURAL LANGUAGE VOICE APPOINTMENT PARSER ---
+    function toggleVoiceAssistant() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const statusText = document.getElementById('voiceStatusText');
-      const pulseRing = document.getElementById('voicePulseRing');
-      const input = document.getElementById('smartQuickInput');
+      const btn = document.getElementById('voiceRecordBtn');
+      const statusEl = document.getElementById('voiceStatusText');
 
       if (!SpeechRecognition) {
-        statusText.textContent = 'Tarayıcınız ses tanımayı desteklemiyor. Metin kutusuna yazabilirsiniz.';
-        statusText.className = 'text-[10px] font-medium text-rose-400 mt-1 pl-1 truncate';
-        input.focus();
+        showToast('Tarayıcı ses tanımayı desteklemiyor, klavye mikrofonunu kullanabilirsiniz.', '🎙️');
+        document.getElementById('voiceInputText').focus();
         return;
       }
 
@@ -850,421 +815,452 @@
 
       speechRecognition = new SpeechRecognition();
       speechRecognition.lang = 'tr-TR';
-      speechRecognition.continuous = false;
       speechRecognition.interimResults = false;
+      speechRecognition.maxAlternatives = 1;
 
-      speechRecognition.onstart = function() {
+      speechRecognition.onstart = () => {
         isSpeechRecording = true;
-        pulseRing.classList.remove('hidden');
-        statusText.textContent = '🔴 Dinliyorum... (Örn: Yarın saat 1de takım toplantısı)';
-        statusText.className = 'text-[10px] font-bold text-rose-400 mt-1 pl-1 truncate animate-pulse';
+        btn.classList.add('mic-recording', 'from-rose-500', 'to-red-600');
+        statusEl.textContent = '🔴 Dinleniyor... Örneğin: "4 Kasım saat 14.00\'da doktor randevum var"';
+        statusEl.classList.remove('hidden');
       };
 
-      speechRecognition.onresult = function(event) {
-        const text = event.results[0][0].transcript;
-        input.value = text;
-        statusText.textContent = `Algılandı: "${text}"`;
-        statusText.className = 'text-[10px] font-semibold text-emerald-400 mt-1 pl-1 truncate';
-        parseAndSaveMeeting(text);
+      speechRecognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('voiceInputText').value = transcript;
+        processNaturalLanguageCommand(transcript);
       };
 
-      speechRecognition.onerror = function(e) {
+      speechRecognition.onerror = () => {
+        statusEl.textContent = 'Ses algılanamadı, tekrar deneyin veya yazın.';
+      };
+
+      speechRecognition.onend = () => {
         isSpeechRecording = false;
-        pulseRing.classList.add('hidden');
-        statusText.textContent = 'Ses anlaşılamadı. Tekrar basıp konuşabilirsiniz.';
-        statusText.className = 'text-[10px] font-medium text-amber-400 mt-1 pl-1 truncate';
-      };
-
-      speechRecognition.onend = function() {
-        isSpeechRecording = false;
-        pulseRing.classList.add('hidden');
+        btn.classList.remove('mic-recording', 'from-rose-500', 'to-red-600');
       };
 
       speechRecognition.start();
     }
 
-    // Gelişmiş Türkçe Doğal Dil İşleyici (Tarih, Ay, Saat Ayrıştırma)
-    function parseAndSaveMeeting(rawText) {
-      if (!rawText || !rawText.trim()) return;
-
-      const text = rawText.trim();
-      const lower = text.toLowerCase();
+    function parseTurkishDateTime(rawText) {
       const now = new Date();
-      let targetDate = new Date(now);
+      let targetDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+      let text = rawText.trim();
+      const lower = text.toLocaleLowerCase('tr-TR');
 
-      // Türkçe Ay Listesi ve Eşleştirmesi
+      // 1. Check Explicit Day + Turkish Month Name (e.g., "4 Kasım", "15 Aralık'ta")
       const monthsMap = {
-        'ocak': 0, 'şubat': 1, 'mart': 2, 'nisan': 3, 'mayıs': 4, 'haziran': 5,
-        'temmuz': 6, 'ağustos': 7, 'eylül': 8, 'ekim': 9, 'kasım': 10, 'aralık': 11
+        'ocak': 0, 'şubat': 1, 'subat': 1, 'mart': 2, 'nisan': 3,
+        'mayıs': 4, 'mayis': 4, 'haziran': 5, 'temmuz': 6, 'ağustos': 7, 'agustos': 7,
+        'eylül': 8, 'eylul': 8, 'ekim': 9, 'kasım': 10, 'kasim': 10, 'aralık': 11, 'aralik': 11
       };
 
-      let dateDetected = false;
+      let dateMatched = false;
+      const monthNamesPattern = Object.keys(monthsMap).join('|');
+      const explicitDateRegex = new RegExp(`(\\d{1,2})\\s*(${monthNamesPattern})(?:['’]?[a-zçğıöşü]+)?`, 'i');
+      const explicitMatch = lower.match(explicitDateRegex);
 
-      // 1. Ay ve Gün Tespiti (Örn: "4 kasım", "15 aralık", "4 kasım'da")
-      const monthPattern = /(?:(\d{1,2})\s+)?(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)(?:\s+(\d{1,2}))?/i;
-      const monthMatch = lower.match(monthPattern);
-
-      if (monthMatch) {
-        const monthIndex = monthsMap[monthMatch[2].toLowerCase()];
-        const dayNumber = parseInt(monthMatch[1] || monthMatch[3] || '1', 10);
-        let year = now.getFullYear();
-
-        // Eğer belirtilen ay geçtiyse bir sonraki yıl kabul et
-        if (monthIndex < now.getMonth() || (monthIndex === now.getMonth() && dayNumber < now.getDate())) {
-          year += 1;
+      if (explicitMatch) {
+        const dayNum = parseInt(explicitMatch[1], 10);
+        const monthName = explicitMatch[2].toLocaleLowerCase('tr-TR');
+        const monthIdx = monthsMap[monthName];
+        let yearNum = now.getFullYear();
+        const candidate = new Date(yearNum, monthIdx, dayNum);
+        // If date already passed by more than 1 day this year, schedule for next year
+        if (candidate < new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1)) {
+          yearNum += 1;
         }
-
-        targetDate = new Date(year, monthIndex, dayNumber);
-        dateDetected = true;
+        targetDate.setFullYear(yearNum, monthIdx, dayNum);
+        dateMatched = true;
       }
 
-      // 2. Gün Bağıntılı Kelimeler ("yarın", "öbür gün", haftanın günleri)
-      if (!dateDetected) {
-        if (lower.includes('yarın')) {
-          targetDate.setDate(targetDate.getDate() + 1);
-          dateDetected = true;
-        } else if (lower.includes('öbür gün') || lower.includes('sonraki gün')) {
+      // 2. Relative Date Words if no explicit month matched
+      if (!dateMatched) {
+        if (lower.includes('öbür gün') || lower.includes('obur gun') || lower.includes('iki gün sonra')) {
           targetDate.setDate(targetDate.getDate() + 2);
-          dateDetected = true;
+        } else if (lower.includes('yarın') || lower.includes('yarin')) {
+          targetDate.setDate(targetDate.getDate() + 1);
         } else {
           const daysMap = {
-            'pazartesi': 1, 'salı': 2, 'çarşamba': 3, 'perşembe': 4,
-            'cuma': 5, 'cumartesi': 6, 'pazar': 0
+            'pazar': 0, 'pazartesi': 1, 'salı': 2, 'sali': 2,
+            'çarşamba': 3, 'carsamba': 3, 'perşembe': 4, 'persembe': 4,
+            'cuma': 5, 'cumartesi': 6
           };
-          for (const [dayName, dayIndex] of Object.entries(daysMap)) {
+          for (const [dayName, dayIdx] of Object.entries(daysMap)) {
             if (lower.includes(dayName)) {
-              const currentDay = now.getDay();
-              let distance = (dayIndex + 7 - currentDay) % 7;
-              if (distance === 0) distance = 7; // Gelecek haftaki gün
-              targetDate.setDate(now.getDate() + distance);
-              dateDetected = true;
+              const currentDay = targetDate.getDay();
+              let diff = (dayIdx - currentDay + 7) % 7;
+              if (diff === 0) diff = 7;
+              targetDate.setDate(targetDate.getDate() + diff);
               break;
             }
           }
         }
       }
 
-      // 3. Saat Tespiti (Örn: "saat 14.00'da", "14:00", "saat 1'de", "akşam 8'de", "16.30")
-      let hour = 14; // Varsayılan saat
-      let minute = 0;
+      // 3. Time Parsing (e.g., "saat 14.00'da", "14:30", "saat 1'de", "akşam 8'de")
+      let hours = 13;
+      let minutes = 0;
+      const isEvening = lower.includes('akşam') || lower.includes('aksam') || lower.includes('gece');
+      const isAfternoon = lower.includes('öğleden sonra') || lower.includes('ogleden sonra');
 
-      // 14:00, 14.00 veya "saat 2" gibi modelleri yakalar
-      const timeMatch = lower.match(/(?:saat\s*)?(\d{1,2})(?:[:.](\d{2}))?(?:\s*(?:'de|'da|'te|'ta|de|da))?/);
-      if (timeMatch) {
-        let parsedHour = parseInt(timeMatch[1], 10);
-        if (timeMatch[2]) {
-          minute = parseInt(timeMatch[2], 10);
-        }
+      const colonOrDotTime = lower.match(/(?:saat\s*)?(\d{1,2})[:.](\d{2})(?:['’]?[a-zçğıöşü]+)?/i);
+      const hourOnlyTime = lower.match(/saat\s*(\d{1,2})(?:['’]?[a-zçğıöşü]+)?/i) || lower.match(/(\d{1,2})\s*['’](?:de|da|te|ta)\b/i);
 
-        // Akşam/öğleden sonra bağlamı
-        if ((lower.includes('akşam') || lower.includes('öğleden sonra') || lower.includes('gece')) && parsedHour < 12) {
-          parsedHour += 12;
-        } else if (parsedHour <= 6 && !timeMatch[2] && !lower.includes('sabah')) {
-          // "saat 1'de", "saat 2'de" dendiğinde genellikle öğleden sonra (13:00 / 14:00) kastedilir
-          parsedHour += 12;
-        }
-        hour = parsedHour;
+      if (colonOrDotTime) {
+        hours = parseInt(colonOrDotTime[1], 10);
+        minutes = parseInt(colonOrDotTime[2], 10);
+      } else if (hourOnlyTime) {
+        hours = parseInt(hourOnlyTime[1], 10);
+        minutes = 0;
       }
 
-      targetDate.setHours(hour, minute, 0, 0);
+      if (hours >= 1 && hours <= 7 && (isEvening || isAfternoon || hours <= 6)) {
+        hours += 12;
+      } else if (hours >= 8 && hours <= 11 && isEvening) {
+        hours += 12;
+      }
 
-      // 4. Konu / Başlık Temizleme (Tarih ve zaman kalıplarını cümleden çıkar)
+      targetDate.setHours(hours, minutes, 0, 0);
+
+      // 4. Clean Title Extraction
       let cleanTitle = text
-        .replace(/yarın|öbür gün|bugün|akşam|sabah|öğlen/gi, '')
-        .replace(/\b(?:ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)\b/gi, '')
-        .replace(/pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar/gi, '')
-        .replace(/(?:saat\s*)?\d{1,2}(?:[:.]\d{2})?(?:'de|'da|'te|'ta|de|da)?/gi, '')
-        .replace(/\b\d{1,2}(?:'de|'da|'te|'ta)?\b/gi, '')
-        .replace(/\b(?:var|randevum|toplantım|görüşmem)\b/gi, '')
+        .replace(explicitDateRegex, '')
+        .replace(/\b(bugün|yarın|yarin|öbür gün|pazartesi|salı|sali|çarşamba|carsamba|perşembe|persembe|cuma|cumartesi|pazar)\b/gi, '')
+        .replace(/\b(sabah|öğlen|öğleden sonra|akşam|aksam|gece)\b/gi, '')
+        .replace(/(?:saat\s*)?\d{1,2}[:.]\d{2}(?:['’]?[a-zçğıöşü]+)?/gi, '')
+        .replace(/saat\s*\d{1,2}(?:['’]?[a-zçğıöşü]+)?/gi, '')
+        .replace(/\d{1,2}\s*['’](?:de|da|te|ta)\b/gi, '')
+        .replace(/\b(var|olacak|ekle|not et)\b/gi, '')
         .replace(/\s+/g, ' ')
         .trim();
 
       if (!cleanTitle || cleanTitle.length < 2) {
-        cleanTitle = 'Randevu / Toplantı';
+        cleanTitle = rawText.trim();
+      } else {
+        cleanTitle = cleanTitle.charAt(0).toUpperCase() + cleanTitle.slice(1);
       }
 
-      // Emojili Başlık
-      cleanTitle = '📌 ' + cleanTitle.charAt(0).toUpperCase() + cleanTitle.slice(1);
+      const yyyy = targetDate.getFullYear();
+      const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
+      const dd = String(targetDate.getDate()).padStart(2, '0');
+      const hh = String(targetDate.getHours()).padStart(2, '0');
+      const min = String(targetDate.getMinutes()).padStart(2, '0');
 
-      const pad = (n) => String(n).padStart(2, '0');
-      const yearStr = targetDate.getFullYear();
-      const monthStr = pad(targetDate.getMonth() + 1);
-      const dayStr = pad(targetDate.getDate());
-      const hStr = pad(targetDate.getHours());
-      const mStr = pad(targetDate.getMinutes());
-      const datetime = `${yearStr}-${monthStr}-${dayStr}T${hStr}:${mStr}`;
-
-      const newMeeting = {
-        id: 'meet_' + Date.now(),
+      return {
         title: cleanTitle,
-        datetime,
+        isoLocal: `${yyyy}-${mm}-${dd}T${hh}:${min}`,
+        dateObj: targetDate
+      };
+    }
+
+    function processNaturalLanguageCommand(passedText) {
+      const inputEl = document.getElementById('voiceInputText');
+      const raw = (passedText || inputEl.value || '').trim();
+      if (!raw) return;
+
+      const parsed = parseTurkishDateTime(raw);
+      const newMeeting = {
+        id: 'mtg_' + Date.now(),
+        title: parsed.title,
+        datetime: parsed.isoLocal,
         completed: false
       };
 
       meetings.push(newMeeting);
+      meetings.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
       saveState();
+      inputEl.value = '';
+
+      const statusEl = document.getElementById('voiceStatusText');
+      const formattedDate = formatTurkishDisplayDate(parsed.isoLocal);
+      statusEl.textContent = `✅ Eklendi: "${parsed.title}" (${formattedDate}) — 2 saat öncesine alarm hazır!`;
+      statusEl.classList.remove('hidden');
+
       playLevelUpSound();
-
-      // UI Güncelleme & Anında Takvim Linklerini Hazırlama
-      document.getElementById('smartQuickInput').value = '';
-      const statusText = document.getElementById('voiceStatusText');
-      statusText.textContent = `✅ Kaydedildi: ${cleanTitle} (${dayStr}.${monthStr}.${yearStr} Saat ${hStr}:${mStr}) - 2 saat kala alarmlı!`;
-      statusText.className = 'text-[10px] font-bold text-emerald-400 mt-1 pl-1 truncate';
-
-      updateQuickMeetingStrip(newMeeting);
       renderMeetings();
+      showToast(`${parsed.title} (${formattedDate}) oluşturuldu`, '📅');
     }
 
-    function updateQuickMeetingStrip(meet) {
-      const strip = document.getElementById('quickNextMeetingStrip');
-      const textEl = document.getElementById('quickNextMeetingText');
-      const gcal = document.getElementById('quickGCalLink');
-      const ics = document.getElementById('quickIcsBtn');
+    function formatTurkishDisplayDate(isoLocal) {
+      const d = new Date(isoLocal);
+      if (isNaN(d.getTime())) return isoLocal;
+      return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+    }
 
-      if (!meet) {
-        // En yakın randevuyu bul
-        const active = meetings.filter(m => !m.completed).sort((a,b) => new Date(a.datetime) - new Date(b.datetime));
-        if (active.length > 0) {
-          meet = active[0];
-        } else {
-          strip.classList.add('hidden');
-          return;
-        }
+    function toCalendarLocalStamp(dateObj) {
+      const y = dateObj.getFullYear();
+      const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const d = String(dateObj.getDate()).padStart(2, '0');
+      const h = String(dateObj.getHours()).padStart(2, '0');
+      const min = String(dateObj.getMinutes()).padStart(2, '0');
+      return `${y}${m}${d}T${h}${min}00`;
+    }
+
+    function buildGoogleCalendarUrl(mtg) {
+      const start = new Date(mtg.datetime);
+      const end = new Date(start.getTime() + 60 * 60 * 1000);
+      const datesParam = `${toCalendarLocalStamp(start)}/${toCalendarLocalStamp(end)}`;
+      const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: `⚡ ${mtg.title}`,
+        dates: datesParam,
+        details: 'Yaşam RPG Asistanı tarafından 2 saat öncesi hatırlatıcılı olarak eklendi.'
+      });
+      return `https://calendar.google.com/calendar/render?${params.toString()}`;
+    }
+
+    function downloadIcsFile(meetingId) {
+      const mtg = meetings.find(m => m.id === meetingId);
+      if (!mtg) return;
+      const start = new Date(mtg.datetime);
+      const end = new Date(start.getTime() + 60 * 60 * 1000);
+      const dtStart = toCalendarLocalStamp(start);
+      const dtEnd = toCalendarLocalStamp(end);
+
+      const icsLines = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//RPG Life Telemetry//TR',
+        'BEGIN:VEVENT',
+        `UID:${mtg.id}@rpglife.local`,
+        `DTSTAMP:${dtStart}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:⚡ ${mtg.title}`,
+        'DESCRIPTION:RPG Asistanı Randevusu (2 Saat Kala Alarm)',
+        'BEGIN:VALARM',
+        'TRIGGER:-PT2H',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:Hatırlatma: ${mtg.title} (2 Saat Kaldı)`,
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsLines], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${mtg.title.replace(/\s+/g, '_')}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function toggleMeetingCompleted(id) {
+      const mtg = meetings.find(m => m.id === id);
+      if (!mtg) return;
+      mtg.completed = !mtg.completed;
+      if (mtg.completed) playCheckSound();
+      saveState();
+      renderMeetings();
+      updateScoreboard();
+    }
+
+    function deleteMeeting(id) {
+      meetings = meetings.filter(m => m.id !== id);
+      saveState();
+      renderMeetings();
+      updateScoreboard();
+    }
+
+    function renderMeetings() {
+      const listEl = document.getElementById('meetingsList');
+      const stripEl = document.getElementById('quickNextMeetingStrip');
+      if (!listEl) return;
+
+      const upcoming = meetings.filter(m => !m.completed);
+      if (upcoming.length > 0) {
+        const latest = upcoming[upcoming.length - 1];
+        stripEl.classList.remove('hidden');
+        document.getElementById('quickNextMeetingText').textContent = `${latest.title} • ${formatTurkishDisplayDate(latest.datetime)}`;
+        document.getElementById('quickGCalLink').href = buildGoogleCalendarUrl(latest);
+        document.getElementById('quickIcsBtn').onclick = () => downloadIcsFile(latest.id);
+      } else {
+        stripEl.classList.add('hidden');
       }
 
-      const d = new Date(meet.datetime);
-      const timeStr = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-      textEl.textContent = `${meet.title} (${timeStr})`;
-      gcal.href = getGoogleCalendarUrl(meet);
-      ics.onclick = () => downloadIcsFile(meet.id);
-      strip.classList.remove('hidden');
+      listEl.innerHTML = '';
+      if (meetings.length === 0) {
+        listEl.innerHTML = '<p class="text-xs text-slate-500 text-center py-4">Henüz randevu yok. Üstteki mikrofona basıp konuşarak saniyeler içinde ekleyebilirsiniz.</p>';
+        return;
+      }
+
+      meetings.forEach(mtg => {
+        const gcalUrl = buildGoogleCalendarUrl(mtg);
+        const card = document.createElement('div');
+        card.className = `p-3 rounded-2xl border transition flex items-center justify-between gap-2 ${
+          mtg.completed ? 'bg-emerald-950/20 border-emerald-500/30 opacity-75' : 'bg-slate-900/70 border-slate-800'
+        }`;
+
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5 min-w-0">
+            <button onclick="toggleMeetingCompleted('${mtg.id}')" class="w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 ${
+              mtg.completed ? 'bg-emerald-500 border-emerald-400 text-slate-950 font-bold' : 'border-slate-600 text-transparent'
+            }">✓</button>
+            <div class="truncate">
+              <div class="text-xs font-bold ${mtg.completed ? 'line-through text-slate-400' : 'text-white'} truncate">${mtg.title}</div>
+              <div class="text-[10px] text-indigo-300 font-medium">${formatTurkishDisplayDate(mtg.datetime)}</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1 shrink-0">
+            <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 text-[10px] font-bold border border-indigo-500/30">GCal</a>
+            <button onclick="downloadIcsFile('${mtg.id}')" class="px-2 py-1 rounded-lg bg-slate-800 text-emerald-300 text-[10px] font-bold">📲 Alarm</button>
+            <button onclick="deleteMeeting('${mtg.id}')" class="p-1 text-slate-500 hover:text-rose-400 text-xs">🗑️</button>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
     }
 
-    // Voice to Text Dictation (Web Speech API)
-    function toggleVoiceDictation() {
-      toggleSmartVoiceInput();
-    }
-
+    // --- RENDER TASKS & SCOREBOARD ---
     function renderDate() {
       const now = new Date();
       const options = { weekday: 'long', day: 'numeric', month: 'long' };
-      const dateStr = now.toLocaleDateString('tr-TR', options);
-      document.getElementById('currentDateDisplay').textContent = dateStr;
-      document.getElementById('streakCount').textContent = `${streak} Gün Seri`;
+      document.getElementById('currentDateText').textContent = now.toLocaleDateString('tr-TR', options);
+      document.getElementById('streakCount').textContent = streak;
     }
 
     function renderTasks() {
       const container = document.getElementById('taskBlocksList');
+      if (!container) return;
       container.innerHTML = '';
 
-      DEFAULT_BLOCKS.forEach(block => {
-        const blockTasks = tasks.filter(t => t.block === block.id);
+      ['morning', 'day', 'evening', 'night'].forEach(blockKey => {
+        const blockTasks = tasks.filter(t => t.block === blockKey);
         if (blockTasks.length === 0) return;
 
-        const blockEl = document.createElement('div');
-        blockEl.className = 'space-y-2';
+        const meta = BLOCK_META[blockKey];
+        const blockDoneXp = blockTasks.filter(t => t.completed).reduce((s, t) => s + t.xp, 0);
+        const blockTotalXp = blockTasks.reduce((s, t) => s + t.xp, 0);
 
-        // Block Header
-        const header = document.createElement('div');
-        header.className = 'flex items-center justify-between px-1';
-        header.innerHTML = `
-          <div class="flex items-center gap-2">
-            <span class="text-base">${block.icon}</span>
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">${block.title}</span>
+        const section = document.createElement('div');
+        section.className = 'space-y-2';
+        section.innerHTML = `
+          <div class="flex items-center justify-between px-1">
+            <h3 class="text-xs font-extrabold ${meta.color}">${meta.title}</h3>
+            <span class="font-mono text-[10px] text-slate-400">${blockDoneXp} / ${blockTotalXp} XP</span>
           </div>
-          <span class="text-[11px] font-mono text-slate-500 font-semibold">
-            ${blockTasks.filter(t => t.completed).length}/${blockTasks.length}
-          </span>
         `;
-        blockEl.appendChild(header);
 
-        // Task Cards List
-        const listEl = document.createElement('div');
-        listEl.className = 'space-y-2';
+        const list = document.createElement('div');
+        list.className = 'space-y-2';
 
         blockTasks.forEach(task => {
-          const card = document.createElement('div');
-          const isDone = task.completed;
-
-          card.className = `group relative rounded-2xl p-3.5 border transition-all duration-200 cursor-pointer flex items-center justify-between select-none ${
-            isDone 
-              ? 'bg-emerald-950/20 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.06)]' 
-              : 'bg-[#131B2A] border-slate-800 hover:border-slate-700 active:scale-[0.98]'
+          const item = document.createElement('div');
+          item.onclick = () => toggleTask(task.id);
+          item.className = `task-card cursor-pointer rounded-2xl p-3.5 border flex items-center justify-between gap-3 ${
+            task.completed
+              ? 'bg-emerald-950/25 border-emerald-500/40 shadow-sm'
+              : 'bg-[#131B2A] border-slate-800 hover:border-slate-700'
           }`;
 
-          card.onclick = (e) => {
-            // Avoid triggering toggle if delete button was clicked
-            if (e.target.closest('.delete-task-btn')) return;
-            toggleTask(task.id);
-          };
-
-          card.innerHTML = `
-            <div class="flex items-center gap-3.5 flex-1 min-w-0 pr-2">
-              <!-- Custom Touch-Friendly Checkbox -->
-              <div class="w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0 ${
-                isDone 
-                  ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/30' 
-                  : 'border-2 border-slate-600 group-hover:border-slate-500'
-              }">
-                ${isDone ? '<svg class="w-4 h-4 font-black" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>' : ''}
-              </div>
-
-              <!-- Task Text -->
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-1.5">
-                  <h4 class="text-xs font-bold truncate ${isDone ? 'line-through text-slate-400' : 'text-slate-100'}">${escapeHtml(task.title)}</h4>
-                </div>
-                ${task.desc ? `<p class="text-[11px] truncate text-slate-500 mt-0.5">${escapeHtml(task.desc)}</p>` : ''}
+          item.innerHTML = `
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-7 h-7 rounded-xl border-2 flex items-center justify-center shrink-0 transition ${
+                task.completed
+                  ? 'bg-emerald-500 border-emerald-400 text-slate-950 font-extrabold'
+                  : 'border-slate-700 bg-slate-900/60 text-transparent'
+              }">✓</div>
+              <div class="min-w-0">
+                <p class="text-xs font-bold ${task.completed ? 'line-through text-slate-400' : 'text-white'} truncate">${task.title}</p>
+                <p class="text-[10px] text-slate-400 truncate">${task.desc || ''}</p>
               </div>
             </div>
-
-            <!-- XP Badge & Action -->
-            <div class="flex items-center gap-2 shrink-0">
-              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
-                isDone 
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
-                  : 'bg-slate-800/90 text-slate-400 border border-slate-700/60'
-              }">
-                +${task.xp} XP
-              </span>
-              <!-- Delete Option -->
-              <button class="delete-task-btn text-slate-600 hover:text-rose-400 p-1 rounded-md transition" onclick="deleteTask('${task.id}')" title="Görevi Sil">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-              </button>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="font-mono text-xs font-bold px-2 py-1 rounded-lg ${
+                task.completed ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-900 text-amber-400 border border-slate-800'
+              }">+${task.xp} XP</span>
+              <button onclick="deleteTask('${task.id}', event)" class="p-1.5 text-slate-600 hover:text-rose-400 text-xs" title="Sil">✕</button>
             </div>
           `;
-
-          listEl.appendChild(card);
+          list.appendChild(item);
         });
 
-        blockEl.appendChild(listEl);
-        container.appendChild(blockEl);
+        section.appendChild(list);
+        container.appendChild(section);
       });
     }
 
     function toggleTask(taskId) {
       const task = tasks.find(t => t.id === taskId);
       if (!task) return;
-
       task.completed = !task.completed;
-
-      if (task.completed) {
-        playCheckSound();
-      } else {
-        playUncheckSound();
-      }
-
+      if (task.completed) playCheckSound();
       saveState();
       renderTasks();
       updateScoreboard();
     }
 
     function updateScoreboard() {
-      const currentXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
-      const maxXp = tasks.reduce((sum, t) => sum + t.xp, 0);
+      const routineXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
+      const meetingXp = meetings.filter(m => m.completed).length * 15;
+      const telemetryXp = calculateTelemetryXp();
+      const currentXp = Math.max(0, routineXp + meetingXp + telemetryXp);
+      const maxXp = tasks.reduce((sum, t) => sum + t.xp, 0) || 220;
 
       document.getElementById('currentXp').textContent = currentXp;
-      document.getElementById('maxXp').textContent = maxXp || 220;
+      document.getElementById('maxXp').textContent = maxXp;
 
-      const pct = maxXp > 0 ? Math.min(100, Math.round((currentXp / maxXp) * 100)) : 0;
+      const pct = Math.min(100, Math.round((currentXp / maxXp) * 100));
       document.getElementById('xpPercentage').textContent = `${pct}%`;
+      document.getElementById('progressBar').style.width = `${pct}%`;
 
-      const progressBar = document.getElementById('progressBar');
-      progressBar.style.width = `${pct}%`;
-
-      // Tier Determination
       const tierBadge = document.getElementById('tierBadge');
       if (currentXp >= 200) {
         tierBadge.textContent = 'Elit Sporcu 🏆';
-        tierBadge.className = 'text-xs font-bold text-amber-400';
-        
-        // Trigger celebration only once per threshold cross
+        tierBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40';
         if (!celebratedToday) {
-          triggerCelebration();
           celebratedToday = true;
+          playLevelUpSound();
+          document.getElementById('celebrationModal').classList.remove('hidden');
         }
       } else if (currentXp >= 170) {
         tierBadge.textContent = 'Sağlam Gün 🔥';
-        tierBadge.className = 'text-xs font-bold text-emerald-400';
+        tierBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
       } else if (currentXp >= 130) {
         tierBadge.textContent = 'Temel Rölanti ⚡';
-        tierBadge.className = 'text-xs font-bold text-cyan-400';
+        tierBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40';
       } else {
         tierBadge.textContent = 'Başlangıç';
-        tierBadge.className = 'text-xs font-bold text-slate-400';
+        tierBadge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-400';
       }
     }
 
-    function triggerCelebration() {
-      playLevelUpSound();
-      if (typeof confetti === 'function') {
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#10b981', '#f59e0b', '#06b6d4', '#ffffff']
-        });
-      }
-      document.getElementById('celebrationModal').classList.remove('hidden');
-    }
-
-    function closeCelebrationModal() {
-      document.getElementById('celebrationModal').classList.add('hidden');
-    }
-
-    // --- ADD CUSTOM TASK ---
-    function openAddTaskModal() {
-      document.getElementById('addTaskModal').classList.remove('hidden');
-      document.getElementById('newTaskTitle').focus();
-    }
-
-    function closeAddTaskModal() {
-      document.getElementById('addTaskModal').classList.add('hidden');
-      document.getElementById('newTaskTitle').value = '';
-      document.getElementById('newTaskDesc').value = '';
-      document.getElementById('newTaskXp').value = '15';
-    }
-
-    function saveNewTask() {
-      const title = document.getElementById('newTaskTitle').value.trim();
-      const desc = document.getElementById('newTaskDesc').value.trim();
-      const block = document.getElementById('newTaskBlock').value;
-      const xp = parseInt(document.getElementById('newTaskXp').value, 10) || 15;
-
-      if (!title) {
-        document.getElementById('newTaskTitle').focus();
-        return;
-      }
-
-      const newTask = {
-        id: 'custom_' + Date.now(),
-        block,
-        title,
-        desc,
-        xp,
-        completed: false
+    function switchTab(tab) {
+      const views = {
+        tasks: document.getElementById('viewTasks'),
+        meetings: document.getElementById('viewMeetings'),
+        stats: document.getElementById('viewStats')
+      };
+      const btns = {
+        tasks: document.getElementById('tabBtnTasks'),
+        meetings: document.getElementById('tabBtnMeetings'),
+        stats: document.getElementById('tabBtnStats')
       };
 
-      tasks.push(newTask);
-      saveState();
-      closeAddTaskModal();
-      renderTasks();
-      updateScoreboard();
+      Object.keys(views).forEach(k => {
+        if (k === tab) {
+          views[k].classList.remove('hidden');
+          btns[k].className = 'py-2 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 shadow transition';
+        } else {
+          views[k].classList.add('hidden');
+          btns[k].className = 'py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition';
+        }
+      });
+
+      if (tab === 'stats') renderStats();
     }
 
-    function deleteTask(taskId) {
-      tasks = tasks.filter(t => t.id !== taskId);
-      saveState();
-      renderTasks();
-      updateScoreboard();
-    }
-
-    // --- RESET / NEW DAY CYCLE ---
     function confirmResetDay() {
-      const currentXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
+      const routineXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
+      const meetingXp = meetings.filter(m => m.completed).length * 15;
+      const currentXp = Math.max(0, routineXp + meetingXp + calculateTelemetryXp());
       const todayStr = getTodayString();
 
-      // Check if already archived today to avoid duplicate entries
       const existingIdx = history.findIndex(h => h.date === todayStr);
       if (existingIdx >= 0) {
         history[existingIdx].xp = currentXp;
@@ -1272,122 +1268,130 @@
         history.push({ date: todayStr, xp: currentXp });
       }
 
-      if (currentXp >= 130) {
-        streak += 1;
-      }
+      if (currentXp >= 130) streak += 1;
 
-      // Reset today
       tasks = tasks.map(t => ({ ...t, completed: false }));
+      telemetry = { steps: 0, sleep: 0, screen: 0 };
       celebratedToday = false;
       saveState();
       renderApp();
       playLevelUpSound();
-
-      // Small toast feedback
-      const btn = event.currentTarget;
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '✅ Yeni Gün Başlatıldı!';
-      setTimeout(() => { btn.innerHTML = originalText; }, 2000);
-    }
-
-    // --- STATS TAB & CHARTS ---
-    function switchTab(tab) {
-      const viewTasks = document.getElementById('viewTasks');
-      const viewMeetings = document.getElementById('viewMeetings');
-      const viewStats = document.getElementById('viewStats');
-      const tabTasksBtn = document.getElementById('tabTasksBtn');
-      const tabMeetingsBtn = document.getElementById('tabMeetingsBtn');
-      const tabStatsBtn = document.getElementById('tabStatsBtn');
-
-      // Reset states
-      viewTasks.classList.add('hidden');
-      viewMeetings.classList.add('hidden');
-      viewStats.classList.add('hidden');
-
-      const activeClass = 'flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 bg-[#131B2A] text-white shadow';
-      const inactiveClass = 'flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200';
-
-      tabTasksBtn.className = inactiveClass;
-      tabMeetingsBtn.className = inactiveClass;
-      tabStatsBtn.className = inactiveClass;
-
-      if (tab === 'tasks') {
-        viewTasks.classList.remove('hidden');
-        tabTasksBtn.className = activeClass;
-      } else if (tab === 'meetings') {
-        viewMeetings.classList.remove('hidden');
-        tabMeetingsBtn.className = activeClass;
-        renderMeetings();
-      } else {
-        viewStats.classList.remove('hidden');
-        tabStatsBtn.className = activeClass;
-        renderStats();
-      }
+      showToast(`Gün ${currentXp} XP ile kaydedildi, yeni gün sıfırlandı!`, '🏆');
     }
 
     function renderStats() {
-      const container = document.getElementById('weeklyChartContainer');
-      container.innerHTML = '';
+      const chartEl = document.getElementById('weeklyChart');
+      const historyList = document.getElementById('historyList');
+      const avgBadge = document.getElementById('avgXpBadge');
+      if (!chartEl || !historyList) return;
 
-      // Last 7 days including today's live score
-      const currentXp = tasks.filter(t => t.completed).reduce((sum, t) => sum + t.xp, 0);
-      const displayData = [...history.slice(-6), { date: 'Bugün', xp: currentXp }];
+      const recent = [...history].slice(-7);
+      chartEl.innerHTML = '';
+      historyList.innerHTML = '';
 
-      const maxChartXp = Math.max(220, ...displayData.map(d => d.xp));
+      if (recent.length === 0) {
+        historyList.innerHTML = '<p class="text-xs text-slate-500 py-3 text-center">Henüz geçmiş gün kaydı bulunmuyor.</p>';
+        return;
+      }
 
-      let totalXp = 0;
-      let eliteDays = 0;
+      const avg = Math.round(recent.reduce((s, d) => s + d.xp, 0) / recent.length);
+      if (avgBadge) avgBadge.textContent = `Ort: ${avg} XP`;
 
-      displayData.forEach((dayData, idx) => {
-        totalXp += dayData.xp;
-        if (dayData.xp >= 200) eliteDays++;
+      recent.forEach(day => {
+        const heightPct = Math.min(100, Math.max(12, Math.round((day.xp / 220) * 100)));
+        const barColor = day.xp >= 200 ? 'from-amber-400 to-amber-500' : day.xp >= 170 ? 'from-emerald-400 to-emerald-500' : 'from-cyan-500 to-indigo-500';
+        const shortDate = day.date.slice(5);
 
-        const heightPct = Math.min(100, Math.round((dayData.xp / maxChartXp) * 100));
-        const isToday = idx === displayData.length - 1;
-        
-        let barColor = 'bg-slate-700';
-        if (dayData.xp >= 200) barColor = 'bg-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.3)]';
-        else if (dayData.xp >= 170) barColor = 'bg-emerald-500';
-        else if (dayData.xp >= 130) barColor = 'bg-cyan-500';
-
-        let dayLabel = dayData.date;
-        if (!isToday) {
-          const parts = dayData.date.split('-');
-          dayLabel = parts.length === 3 ? `${parts[2]}` : dayData.date;
-        }
-
-        const barCol = document.createElement('div');
-        barCol.className = 'flex-1 flex flex-col items-center h-full justify-end group';
-        barCol.innerHTML = `
-          <span class="text-[10px] font-mono font-bold text-slate-400 mb-1 group-hover:text-white transition">${dayData.xp}</span>
-          <div class="w-full bg-slate-900 rounded-t-lg h-full flex items-end p-0.5">
-            <div class="w-full ${barColor} rounded-t-md transition-all duration-500" style="height: ${heightPct}%"></div>
-          </div>
-          <span class="text-[10px] font-medium ${isToday ? 'text-emerald-400 font-bold' : 'text-slate-500'} mt-1.5 truncate">${dayLabel}</span>
+        const col = document.createElement('div');
+        col.className = 'flex-1 flex flex-col items-center justify-end h-full gap-1';
+        col.innerHTML = `
+          <span class="font-mono text-[9px] text-slate-300 font-bold">${day.xp}</span>
+          <div class="w-full max-w-[26px] rounded-t-lg bg-gradient-to-t ${barColor} transition-all duration-500" style="height: ${heightPct}%"></div>
+          <span class="font-mono text-[9px] text-slate-500">${shortDate}</span>
         `;
-        container.appendChild(barCol);
+        chartEl.appendChild(col);
       });
 
-      const avg = Math.round(totalXp / displayData.length);
-      document.getElementById('weeklyAvgXp').textContent = `${avg} XP`;
-      document.getElementById('eliteDaysCount').textContent = `${eliteDays} Gün`;
+      [...recent].reverse().forEach(day => {
+        const tierText = day.xp >= 200 ? '🏆 Elit' : day.xp >= 170 ? '🔥 Sağlam' : day.xp >= 130 ? '⚡ Rölanti' : 'Başlangıç';
+        const color = day.xp >= 200 ? 'text-amber-400' : day.xp >= 170 ? 'text-emerald-400' : day.xp >= 130 ? 'text-cyan-400' : 'text-slate-400';
+
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-800 text-xs';
+        row.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-slate-400">${day.date}</span>
+            <span class="text-[10px] ${color} font-bold px-1.5 py-0.5 rounded bg-slate-800/80">${tierText}</span>
+          </div>
+          <span class="font-mono font-bold text-white">${day.xp} XP</span>
+        `;
+        historyList.appendChild(row);
+      });
     }
 
-    function escapeHtml(text) {
-      if (!text) return '';
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    function openAddTaskModal() {
+      document.getElementById('addTaskModal').classList.remove('hidden');
     }
 
-    // --- INITIALIZATION ---
+    function closeAddTaskModal() {
+      document.getElementById('addTaskModal').classList.add('hidden');
+    }
+
+    function addNewTask(event) {
+      if (event) event.preventDefault();
+      const titleInput = document.getElementById('taskTitleInput');
+      const xpInput = document.getElementById('taskXpInput');
+      const blockSelect = document.getElementById('taskBlockSelect');
+
+      const title = titleInput.value.trim();
+      if (!title) return;
+
+      tasks.push({
+        id: 'custom_' + Date.now(),
+        block: blockSelect.value || 'morning',
+        title: title,
+        desc: 'Özel Eklenen Rutin Görevi',
+        xp: parseInt(xpInput.value, 10) || 15,
+        completed: false
+      });
+
+      saveState();
+      renderApp();
+      closeAddTaskModal();
+      titleInput.value = '';
+      showToast('Yeni görev eklendi!', '⚡');
+    }
+
+    function deleteTask(taskId, event) {
+      if (event) event.stopPropagation();
+      tasks = tasks.filter(t => t.id !== taskId);
+      saveState();
+      renderApp();
+    }
+
+    function closeCelebrationModal() {
+      document.getElementById('celebrationModal').classList.add('hidden');
+    }
+
+    function renderApp() {
+      renderDate();
+      renderTasks();
+      renderMeetings();
+      renderTelemetryUI();
+      updateScoreboard();
+      renderStats();
+    }
+
+    window.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('addTaskModal')) closeAddTaskModal();
+      if (e.target === document.getElementById('shortcutGuideModal')) closeShortcutGuideModal();
+      if (e.target === document.getElementById('celebrationModal')) closeCelebrationModal();
+      if (e.target === document.getElementById('clipboardModal')) closeClipboardSyncModal();
+    });
+
     window.onload = function() {
       loadState();
       renderApp();
-      updateQuickMeetingStrip();
     };
   </script>
 </body>
