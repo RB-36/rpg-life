@@ -125,110 +125,147 @@
   <!-- MAIN CONTENT CONTAINER -->
   <main class="flex-1 max-w-md w-full mx-auto px-4 py-4 space-y-6">
 
-    <!-- NAVIGATION TABS: Görevler vs Analiz -->
-  <div class="flex rounded-xl bg-slate-900/80 p-1 border border-slate-800">
-    <button onclick="switchTab('tasks')" id="tabTasksBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 bg-[#131B2A] text-white shadow">
-      ⚡ Rutinler
-    </button>
-    <button onclick="switchTab('meetings')" id="tabMeetingsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5">
-      <span>📅 Randevu & Toplantı</span>
-      <span id="upcomingBadge" class="hidden px-1.5 py-0.2 text-[10px] font-mono bg-indigo-500 text-white rounded-full">0</span>
-    </button>
-    <button onclick="switchTab('stats')" id="tabStatsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200">
-      📊 Analiz
-    </button>
-  </div>
+    <!-- SESLE HIZLI RANDEVU & TOPLANTI KAYIT KARTI (HER ZAMAN GÖRÜNÜR) -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-indigo-950/60 via-[#131B2A] to-purple-950/40 rounded-3xl p-4 border border-indigo-500/40 shadow-xl shadow-indigo-950/30">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-indigo-500/20 text-indigo-400 text-sm">🎙️</span>
+          <div>
+            <h3 class="text-xs font-bold text-white uppercase tracking-wider">Sesli Randevu Asistanı</h3>
+            <p class="text-[10px] text-slate-400">Örn: "Yarın saat 1'de takım toplantısı"</p>
+          </div>
+        </div>
+        <span class="text-[10px] font-mono font-bold text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">2 Saat Kala Alarm</span>
+      </div>
 
-  <!-- VIEW 1: TASKS LIST -->
-  <div id="viewTasks" class="space-y-6 pb-20">
-    <!-- Quick Meeting Alert Banner (if any upcoming in 24 hours) -->
-    <div id="quickMeetingBanner" class="hidden bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-[#131B2A] border border-indigo-500/30 rounded-2xl p-3 flex items-center justify-between">
-      <div class="flex items-center gap-2.5 min-w-0">
-        <span class="text-lg">⏰</span>
-        <div class="min-w-0">
-          <span class="text-[10px] uppercase font-bold tracking-wider text-indigo-400 block">Sıradaki Randevu</span>
-          <p id="nextMeetingTitle" class="text-xs font-bold text-white truncate">Toplantı yükleniyor...</p>
+      <!-- KOCAMAN SES KAYIT / BAS-KONUŞ BUTONU -->
+      <div class="flex items-center gap-3">
+        <button id="mainVoiceRecordBtn" onclick="toggleSmartVoiceInput()" class="relative shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-500 hover:from-indigo-500 hover:to-purple-400 text-white flex items-center justify-center shadow-lg shadow-indigo-600/40 transition active:scale-95 group">
+          <span id="voicePulseRing" class="hidden absolute inset-0 rounded-2xl bg-rose-500 animate-ping opacity-60"></span>
+          <svg id="mainMicSvg" class="w-6 h-6 transition-transform group-active:scale-90" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+          </svg>
+        </button>
+
+        <div class="flex-1 min-w-0">
+          <div class="bg-slate-900/80 border border-slate-700/80 rounded-xl p-2.5 flex items-center justify-between gap-2">
+            <input type="text" id="smartQuickInput" placeholder="Mikrofona bas ve söyle ya da buraya yaz..." class="bg-transparent text-xs text-white placeholder-slate-500 w-full focus:outline-none">
+            <button onclick="parseAndSaveMeeting(document.getElementById('smartQuickInput').value)" class="shrink-0 p-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition" title="Kaydet">
+              ➔
+            </button>
+          </div>
+          <div id="voiceStatusText" class="text-[10px] font-medium text-slate-400 mt-1 pl-1 truncate">
+            Mikrofona basıp konuş, 2 saat kala alarmla takvime işlesin.
+          </div>
         </div>
       </div>
-      <button onclick="switchTab('meetings')" class="shrink-0 text-[11px] font-bold text-indigo-300 hover:text-white bg-indigo-500/20 px-2.5 py-1.5 rounded-lg border border-indigo-500/30 transition">
-        Gör →
+
+      <!-- Son Eklenen / Sıradaki Yaklaşan Randevu Bildirim Şeridi -->
+      <div id="quickNextMeetingStrip" class="hidden mt-3 pt-3 border-t border-indigo-500/20 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2 truncate pr-2">
+          <span class="text-xs">⏰</span>
+          <span id="quickNextMeetingText" class="truncate font-semibold text-slate-200"></span>
+        </div>
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a id="quickGCalLink" href="#" target="_blank" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold border border-indigo-500/30 hover:bg-indigo-500/30 transition">Google Takvim</a>
+          <button id="quickIcsBtn" onclick="" class="px-2 py-1 rounded-md bg-slate-800 text-slate-300 text-[10px] font-medium hover:bg-slate-700 transition">📲 İndir</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS: Görevler vs Analiz -->
+    <div class="flex rounded-xl bg-slate-900/80 p-1 border border-slate-800">
+      <button onclick="switchTab('tasks')" id="tabTasksBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 bg-[#131B2A] text-white shadow">
+        ⚡ Rutinler
+      </button>
+      <button onclick="switchTab('meetings')" id="tabMeetingsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200 flex items-center justify-center gap-1.5">
+        <span>📅 Tüm Randevular</span>
+        <span id="upcomingBadge" class="hidden px-1.5 py-0.2 text-[10px] font-mono bg-indigo-500 text-white rounded-full">0</span>
+      </button>
+      <button onclick="switchTab('stats')" id="tabStatsBtn" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 text-slate-400 hover:text-slate-200">
+        📊 Analiz
       </button>
     </div>
 
-    <!-- Quick Action: Add task modal opener -->
-    <div class="flex items-center justify-between">
-        <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase">Rutin Akışı</h2>
-        <button onclick="openAddTaskModal()" class="flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 px-2.5 py-1 rounded-lg transition active:scale-95">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
-          Yeni Görev Ekle
+    <!-- VIEW 1: TASKS LIST -->
+    <div id="viewTasks" class="space-y-6 pb-20">
+      <!-- Quick Meeting Banner (if any nearest) -->
+      <div id="quickMeetingBanner" class="hidden p-3 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2 truncate pr-2">
+          <span>⏰</span>
+          <span id="nextMeetingTitle" class="truncate font-semibold text-indigo-200"></span>
+        </div>
+        <button onclick="switchTab('meetings')" class="text-[11px] font-bold text-indigo-400 underline shrink-0">Gör</button>
+      </div>
+
+      <!-- Action Button: Add Task & Reset Day -->
+      <div class="flex items-center gap-2">
+        <button onclick="openAddTaskModal()" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-md shadow-emerald-950/40 flex items-center justify-center gap-1.5 transition active:scale-[0.98]">
+          <span>+</span>
+          <span>Yeni Görev Ekle</span>
+        </button>
+        <button onclick="confirmResetDay()" class="py-2.5 px-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 font-semibold text-xs border border-slate-700/50 transition active:scale-[0.98]" title="Yeni güne geç / Listeyi sıfırla">
+          🔄 Günü Sıfırla
         </button>
       </div>
 
-      <!-- Task Blocks Container (Rendered dynamically) -->
+      <!-- Task Blocks List Container -->
       <div id="taskBlocksList" class="space-y-5">
         <!-- Rendered via JavaScript -->
       </div>
-
-      <!-- Day Actions: Reset/Archive -->
-    <div class="pt-4 border-t border-slate-800 flex gap-2">
-      <button onclick="confirmResetDay()" class="w-full py-3 px-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 text-xs font-bold border border-slate-700/60 transition active:scale-[0.99] flex items-center justify-center gap-2">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-        Günü Tamamla & Yeni Güne Başla
-      </button>
     </div>
-  </div>
 
-  <!-- VIEW: MEETINGS / APPOINTMENTS -->
-  <div id="viewMeetings" class="space-y-5 hidden pb-20">
-    <!-- Quick Add Meeting Box -->
-    <div class="bg-[#131B2A] rounded-2xl p-4 border border-indigo-500/30 shadow-lg space-y-3">
-      <div class="flex items-center justify-between">
-        <h3 class="text-xs font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
-          <span>🎙️</span> Hızlı Randevu Ekle
-        </h3>
-        <span class="text-[10px] text-slate-400">Tek tıkla takvime işle</span>
-      </div>
-
-      <!-- Voice or Text Input -->
-      <div class="relative flex items-center">
-        <input type="text" id="meetingTitleInput" placeholder="Örn: 15:00 Sponsorluk Görüşmesi" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-10 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-        <!-- Voice Dictation Button (Web Speech API) -->
-        <button id="voiceBtn" onclick="toggleVoiceDictation()" class="absolute right-2 p-1.5 text-slate-400 hover:text-white transition rounded-lg" title="Sesle Yazdır">
-          <svg id="micIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
-          <span id="listeningIndicator" class="hidden absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-        </button>
-      </div>
-
-      <div class="grid grid-cols-2 gap-2">
-        <div>
-          <label class="text-[10px] text-slate-400 font-semibold block mb-1">Tarih</label>
-          <input type="date" id="meetingDateInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+    <!-- VIEW 2: MEETINGS & APPOINTMENTS -->
+    <div id="viewMeetings" class="space-y-6 hidden pb-20">
+      <!-- Manual Quick Input Form -->
+      <div class="bg-[#131B2A] rounded-2xl p-4 border border-slate-800 space-y-3 shadow-lg">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-white uppercase tracking-wider">Manuel Randevu Ekle</h3>
+          <span class="text-[10px] text-slate-500">Sesle veya elle girilebilir</span>
         </div>
-        <div>
-          <label class="text-[10px] text-slate-400 font-semibold block mb-1">Saat</label>
-          <input type="time" id="meetingTimeInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+
+        <div class="space-y-2.5">
+          <!-- Voice or Text Input -->
+          <div class="relative flex items-center">
+            <input type="text" id="meetingTitleInput" placeholder="Örn: 15:00 Sponsorluk Görüşmesi" class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-3 pr-10 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+            <!-- Voice Dictation Button (Web Speech API) -->
+            <button id="voiceBtn" onclick="toggleVoiceDictation()" class="absolute right-2 p-1.5 text-slate-400 hover:text-white transition rounded-lg" title="Sesle Yazdır">
+              <svg id="micIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+              <span id="listeningIndicator" class="hidden absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-[10px] text-slate-400 font-semibold block mb-1">Tarih</label>
+              <input type="date" id="meetingDateInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+            <div>
+              <label class="text-[10px] text-slate-400 font-semibold block mb-1">Saat</label>
+              <input type="time" id="meetingTimeInput" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+            </div>
+          </div>
+
+          <button onclick="saveQuickMeeting()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition active:scale-[0.99] flex items-center justify-center gap-1.5">
+            <span>📌</span> Randevuyu Kaydet (+15 XP)
+          </button>
         </div>
       </div>
 
-      <button onclick="saveQuickMeeting()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md transition active:scale-[0.99] flex items-center justify-center gap-1.5">
-        <span>📌</span> Randevuyu Kaydet (+15 XP)
-      </button>
-    </div>
+      <!-- Upcoming List -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between px-1">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Planlanan Görüşmeler</h3>
+          <span id="totalMeetingsCount" class="text-xs font-mono text-slate-500 font-semibold">0 Randevu</span>
+        </div>
 
-    <!-- Upcoming List -->
-    <div class="space-y-3">
-      <div class="flex items-center justify-between px-1">
-        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Planlanan Görüşmeler</h3>
-        <span id="totalMeetingsCount" class="text-xs font-mono text-slate-500 font-semibold">0 Randevu</span>
-      </div>
-
-      <div id="meetingsListContainer" class="space-y-2.5">
-        <!-- Rendered via JavaScript -->
+        <div id="meetingsListContainer" class="space-y-2.5">
+          <!-- Rendered via JavaScript -->
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- VIEW 2: WEEKLY STATS -->
+    <!-- VIEW 3: WEEKLY STATS -->
     <div id="viewStats" class="space-y-6 hidden pb-20">
       <div class="bg-[#131B2A] rounded-2xl p-4 border border-slate-800 space-y-4">
         <div class="flex items-center justify-between">
@@ -720,17 +757,19 @@
       const start = new Date(meet.datetime);
       const end = new Date(start.getTime() + 60 * 60 * 1000); // 1 hour duration
 
-      const formatGCal = (date) => {
-        return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+      // Yerel saat formatı (YYYYMMDDTHHmmss) - UTC dönüşümü yapmadan yerel saati korur
+      const formatLocalIso = (d) => {
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
       };
 
-      const dates = `${formatGCal(start)}/${formatGCal(end)}`;
+      const dates = `${formatLocalIso(start)}/${formatLocalIso(end)}`;
       const title = encodeURIComponent(meet.title);
-      const details = encodeURIComponent('Yaşam RPG üzerinden kaydedilen randevu. Kaçırma!');
+      const details = encodeURIComponent('Yaşam RPG hatırlatıcısı. Bu etkinliğin 2 saat öncesine alarm kurulmuştur!');
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}`;
     }
 
-    // Direct .ics File generator for iOS Apple Calendar & Android
+    // Direct .ics File generator for iOS Apple Calendar & Android (2 Hours Prior Alarm)
     function downloadIcsFile(id) {
       const meet = meetings.find(m => m.id === id);
       if (!meet) return;
@@ -738,25 +777,29 @@
       const start = new Date(meet.datetime);
       const end = new Date(start.getTime() + 60 * 60 * 1000);
 
-      const formatIcs = (d) => {
-        return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      // Yerel saat formatı (Z eklemeden doğrudan cihazın yerel saatinde algılanmasını sağlar)
+      const pad = (n) => String(n).padStart(2, '0');
+      const formatLocalIcs = (d) => {
+        return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
       };
 
+      // 2 Hours Before Alarm: -PT2H
       const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
         'PRODID:-//Yasam RPG//Randevu Takip//TR',
+        'CALSCALE:GREGORIAN',
         'BEGIN:VEVENT',
         `UID:${meet.id}@yasamrpg.app`,
-        `DTSTAMP:${formatIcs(new Date())}`,
-        `DTSTART:${formatIcs(start)}`,
-        `DTEND:${formatIcs(end)}`,
+        `DTSTAMP:${formatLocalIcs(new Date())}`,
+        `DTSTART:${formatLocalIcs(start)}`,
+        `DTEND:${formatLocalIcs(end)}`,
         `SUMMARY:${meet.title}`,
-        'DESCRIPTION:Yaşam RPG hatırlatıcısı.',
+        'DESCRIPTION:Yaşam RPG üzerinden kaydedilen randevu.',
         'BEGIN:VALARM',
-        'TRIGGER:-PT15M',
+        'TRIGGER:-PT2H',
         'ACTION:DISPLAY',
-        'DESCRIPTION:Hatırlatıcı (15 dk önce)',
+        'DESCRIPTION:DİKKAT: Toplantıya 2 saat kaldı!',
         'END:VALARM',
         'END:VEVENT',
         'END:VCALENDAR'
@@ -766,24 +809,26 @@
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `${meet.title.substring(0, 15)}.ics`;
+      a.download = `${meet.title.substring(0, 15).replace(/[^\w\sğüşıöçĞÜŞİÖÇ-]/g, '')}.ics`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }
 
-    // Voice to Text Dictation (Web Speech API)
-    function toggleVoiceDictation() {
+    // --- DOĞAL DİL İŞLEYİCİ & AKILLI SESLİ RANDEVU (NLP) ---
+    function toggleSmartVoiceInput() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const statusText = document.getElementById('voiceStatusText');
+      const pulseRing = document.getElementById('voicePulseRing');
+      const input = document.getElementById('smartQuickInput');
+
       if (!SpeechRecognition) {
-        alert('Tarayıcınız ses tanıma özelliğini desteklemiyor. Lütfen klavyenizin mikrofon tuşunu kullanın.');
+        statusText.textContent = 'Tarayıcınız ses tanımayı desteklemiyor. Metin kutusuna yazabilirsiniz.';
+        statusText.className = 'text-[10px] font-medium text-rose-400 mt-1 pl-1 truncate';
+        input.focus();
         return;
       }
-
-      const micIcon = document.getElementById('micIcon');
-      const listeningIndicator = document.getElementById('listeningIndicator');
-      const input = document.getElementById('meetingTitleInput');
 
       if (isSpeechRecording && speechRecognition) {
         speechRecognition.stop();
@@ -797,29 +842,194 @@
 
       speechRecognition.onstart = function() {
         isSpeechRecording = true;
-        micIcon.classList.add('text-rose-500');
-        listeningIndicator.classList.remove('hidden');
+        pulseRing.classList.remove('hidden');
+        statusText.textContent = '🔴 Dinliyorum... (Örn: Yarın saat 1de takım toplantısı)';
+        statusText.className = 'text-[10px] font-bold text-rose-400 mt-1 pl-1 truncate animate-pulse';
       };
 
       speechRecognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript;
-        input.value = transcript;
-        playCheckSound();
+        const text = event.results[0][0].transcript;
+        input.value = text;
+        statusText.textContent = `Algılandı: "${text}"`;
+        statusText.className = 'text-[10px] font-semibold text-emerald-400 mt-1 pl-1 truncate';
+        parseAndSaveMeeting(text);
       };
 
-      speechRecognition.onerror = function() {
+      speechRecognition.onerror = function(e) {
         isSpeechRecording = false;
-        micIcon.classList.remove('text-rose-500');
-        listeningIndicator.classList.add('hidden');
+        pulseRing.classList.add('hidden');
+        statusText.textContent = 'Ses anlaşılamadı. Tekrar basıp konuşabilirsiniz.';
+        statusText.className = 'text-[10px] font-medium text-amber-400 mt-1 pl-1 truncate';
       };
 
       speechRecognition.onend = function() {
         isSpeechRecording = false;
-        micIcon.classList.remove('text-rose-500');
-        listeningIndicator.classList.add('hidden');
+        pulseRing.classList.add('hidden');
       };
 
       speechRecognition.start();
+    }
+
+    // Gelişmiş Türkçe Doğal Dil İşleyici (Tarih, Ay, Saat Ayrıştırma)
+    function parseAndSaveMeeting(rawText) {
+      if (!rawText || !rawText.trim()) return;
+
+      const text = rawText.trim();
+      const lower = text.toLowerCase();
+      const now = new Date();
+      let targetDate = new Date(now);
+
+      // Türkçe Ay Listesi ve Eşleştirmesi
+      const monthsMap = {
+        'ocak': 0, 'şubat': 1, 'mart': 2, 'nisan': 3, 'mayıs': 4, 'haziran': 5,
+        'temmuz': 6, 'ağustos': 7, 'eylül': 8, 'ekim': 9, 'kasım': 10, 'aralık': 11
+      };
+
+      let dateDetected = false;
+
+      // 1. Ay ve Gün Tespiti (Örn: "4 kasım", "15 aralık", "4 kasım'da")
+      const monthPattern = /(?:(\d{1,2})\s+)?(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)(?:\s+(\d{1,2}))?/i;
+      const monthMatch = lower.match(monthPattern);
+
+      if (monthMatch) {
+        const monthIndex = monthsMap[monthMatch[2].toLowerCase()];
+        const dayNumber = parseInt(monthMatch[1] || monthMatch[3] || '1', 10);
+        let year = now.getFullYear();
+
+        // Eğer belirtilen ay geçtiyse bir sonraki yıl kabul et
+        if (monthIndex < now.getMonth() || (monthIndex === now.getMonth() && dayNumber < now.getDate())) {
+          year += 1;
+        }
+
+        targetDate = new Date(year, monthIndex, dayNumber);
+        dateDetected = true;
+      }
+
+      // 2. Gün Bağıntılı Kelimeler ("yarın", "öbür gün", haftanın günleri)
+      if (!dateDetected) {
+        if (lower.includes('yarın')) {
+          targetDate.setDate(targetDate.getDate() + 1);
+          dateDetected = true;
+        } else if (lower.includes('öbür gün') || lower.includes('sonraki gün')) {
+          targetDate.setDate(targetDate.getDate() + 2);
+          dateDetected = true;
+        } else {
+          const daysMap = {
+            'pazartesi': 1, 'salı': 2, 'çarşamba': 3, 'perşembe': 4,
+            'cuma': 5, 'cumartesi': 6, 'pazar': 0
+          };
+          for (const [dayName, dayIndex] of Object.entries(daysMap)) {
+            if (lower.includes(dayName)) {
+              const currentDay = now.getDay();
+              let distance = (dayIndex + 7 - currentDay) % 7;
+              if (distance === 0) distance = 7; // Gelecek haftaki gün
+              targetDate.setDate(now.getDate() + distance);
+              dateDetected = true;
+              break;
+            }
+          }
+        }
+      }
+
+      // 3. Saat Tespiti (Örn: "saat 14.00'da", "14:00", "saat 1'de", "akşam 8'de", "16.30")
+      let hour = 14; // Varsayılan saat
+      let minute = 0;
+
+      // 14:00, 14.00 veya "saat 2" gibi modelleri yakalar
+      const timeMatch = lower.match(/(?:saat\s*)?(\d{1,2})(?:[:.](\d{2}))?(?:\s*(?:'de|'da|'te|'ta|de|da))?/);
+      if (timeMatch) {
+        let parsedHour = parseInt(timeMatch[1], 10);
+        if (timeMatch[2]) {
+          minute = parseInt(timeMatch[2], 10);
+        }
+
+        // Akşam/öğleden sonra bağlamı
+        if ((lower.includes('akşam') || lower.includes('öğleden sonra') || lower.includes('gece')) && parsedHour < 12) {
+          parsedHour += 12;
+        } else if (parsedHour <= 6 && !timeMatch[2] && !lower.includes('sabah')) {
+          // "saat 1'de", "saat 2'de" dendiğinde genellikle öğleden sonra (13:00 / 14:00) kastedilir
+          parsedHour += 12;
+        }
+        hour = parsedHour;
+      }
+
+      targetDate.setHours(hour, minute, 0, 0);
+
+      // 4. Konu / Başlık Temizleme (Tarih ve zaman kalıplarını cümleden çıkar)
+      let cleanTitle = text
+        .replace(/yarın|öbür gün|bugün|akşam|sabah|öğlen/gi, '')
+        .replace(/\b(?:ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)\b/gi, '')
+        .replace(/pazartesi|salı|çarşamba|perşembe|cuma|cumartesi|pazar/gi, '')
+        .replace(/(?:saat\s*)?\d{1,2}(?:[:.]\d{2})?(?:'de|'da|'te|'ta|de|da)?/gi, '')
+        .replace(/\b\d{1,2}(?:'de|'da|'te|'ta)?\b/gi, '')
+        .replace(/\b(?:var|randevum|toplantım|görüşmem)\b/gi, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      if (!cleanTitle || cleanTitle.length < 2) {
+        cleanTitle = 'Randevu / Toplantı';
+      }
+
+      // Emojili Başlık
+      cleanTitle = '📌 ' + cleanTitle.charAt(0).toUpperCase() + cleanTitle.slice(1);
+
+      const pad = (n) => String(n).padStart(2, '0');
+      const yearStr = targetDate.getFullYear();
+      const monthStr = pad(targetDate.getMonth() + 1);
+      const dayStr = pad(targetDate.getDate());
+      const hStr = pad(targetDate.getHours());
+      const mStr = pad(targetDate.getMinutes());
+      const datetime = `${yearStr}-${monthStr}-${dayStr}T${hStr}:${mStr}`;
+
+      const newMeeting = {
+        id: 'meet_' + Date.now(),
+        title: cleanTitle,
+        datetime,
+        completed: false
+      };
+
+      meetings.push(newMeeting);
+      saveState();
+      playLevelUpSound();
+
+      // UI Güncelleme & Anında Takvim Linklerini Hazırlama
+      document.getElementById('smartQuickInput').value = '';
+      const statusText = document.getElementById('voiceStatusText');
+      statusText.textContent = `✅ Kaydedildi: ${cleanTitle} (${dayStr}.${monthStr}.${yearStr} Saat ${hStr}:${mStr}) - 2 saat kala alarmlı!`;
+      statusText.className = 'text-[10px] font-bold text-emerald-400 mt-1 pl-1 truncate';
+
+      updateQuickMeetingStrip(newMeeting);
+      renderMeetings();
+    }
+
+    function updateQuickMeetingStrip(meet) {
+      const strip = document.getElementById('quickNextMeetingStrip');
+      const textEl = document.getElementById('quickNextMeetingText');
+      const gcal = document.getElementById('quickGCalLink');
+      const ics = document.getElementById('quickIcsBtn');
+
+      if (!meet) {
+        // En yakın randevuyu bul
+        const active = meetings.filter(m => !m.completed).sort((a,b) => new Date(a.datetime) - new Date(b.datetime));
+        if (active.length > 0) {
+          meet = active[0];
+        } else {
+          strip.classList.add('hidden');
+          return;
+        }
+      }
+
+      const d = new Date(meet.datetime);
+      const timeStr = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+      textEl.textContent = `${meet.title} (${timeStr})`;
+      gcal.href = getGoogleCalendarUrl(meet);
+      ics.onclick = () => downloadIcsFile(meet.id);
+      strip.classList.remove('hidden');
+    }
+
+    // Voice to Text Dictation (Web Speech API)
+    function toggleVoiceDictation() {
+      toggleSmartVoiceInput();
     }
 
     function renderDate() {
@@ -1164,6 +1374,7 @@
     window.onload = function() {
       loadState();
       renderApp();
+      updateQuickMeetingStrip();
     };
   </script>
 </body>
